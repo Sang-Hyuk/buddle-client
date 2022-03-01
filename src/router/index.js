@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CompanyView from '../views/CompanyView'
 import BusinessView from '../views/BusinessView'
+import ProductView from '../views/ProductView'
 
 Vue.use(VueRouter)
 
@@ -21,7 +22,12 @@ const routes = [
     path: '/business',
     name: 'about',
     component: BusinessView
-  }
+  },
+  {
+    path: '/product',
+    name: 'about',
+    component: ProductView
+  },
 ]
 
 const router = new VueRouter({
