@@ -2,27 +2,25 @@
   <v-container fluid>
     <!--  회사소개  -->
     <v-container class="mt-4">
-      <v-row class="mb-12" justify="left">
-        <v-col lg="12">
+      <v-row class="mb-12">
+        <v-col>
           <p class="text-left" style="font-size: 32px; font-weight: bold; border-bottom: 1px solid; border-color: darkgray;">회사소개
             <span style="font-size: 18px;">About Buddle</span>
           </p>
         </v-col>
       </v-row>
       <v-row class="mb-12" justify="left">
-        <v-col lg="1">
-        </v-col>
-        <v-col lg="11">
+        <v-col>
           <p class="text-left" style="font-size: 28px;">육아, 걱정마세요.<br>이제 버들이 함께합니다.</p>
         </v-col>
       </v-row>
       <v-row class="mb-12" justify="center">
-        <v-col lg="1">
-        </v-col>
-        <v-col lg="3" class="text-center">
+        <v-col class="text-center">
           <v-card style="margin-bottom: 10px;"><v-img src='../assets/ceo.png'></v-img></v-card>
         </v-col>
-        <v-col lg="7" class="text-center">
+      </v-row>
+      <v-row class="mb-12" justify="center">
+        <v-col class="text-center">
           <p class="text-left" style="font-size: 20px; font-weight: 500; color: saddlebrown">저출산과 맞벌이 부부 증가라는 환경변화 속에서 육아 생활에 보다 나은 보탬을 드리기 위해
             <br>육아 관련 재품 전문회사, 버들은 부모된 마음으로 최선의 노력을 다 하고 있습니다.
           </p>
@@ -33,29 +31,23 @@
           <p class="text-left" style="font-size: 15px; color: saddlebrown">우리 아이와 더 많은 시간을 공유하고, 아이의 건강한 성장을 위해 버들이 함께 하겠습니다.
           </p>
           <br><br>
-          <p class="text-rifht" style="font-size: 28px; font-weight: 500; font-family: 'Nanum Pen Script'">주식회사 버들</p>
-        </v-col>
-        <v-col lg="1">
+          <p class="text-right" style="font-size: 28px; font-weight: 500; font-family: 'Nanum Pen Script'">주식회사 버들</p>
         </v-col>
       </v-row>
     </v-container>
     <!--  비전  -->
     <v-container class="mt-4">
       <v-row class="mb-12" justify="left">
-        <v-col lg="12">
+        <v-col>
           <p class="text-left" style="font-size: 32px; font-weight: bold; border-bottom: 1px solid; border-color: darkgray;">Vision
             <span style="font-size: 18px;">Human Friendly Power Brand</span>
           </p>
         </v-col>
       </v-row>
       <v-row class="mb-12" justify="center">
-        <v-col lg="1">
-        </v-col>
-        <v-col lg="10" class="text-center">
+        <v-col class="text-center">
           <p class="text-left" style="font-size: 20px; font-weight: 500;">버들은 존중, 신뢰, 창조를 기반으로 공감하고 소통하는 즐거운 일터를 토대로 친 인간적인 강력한 브랜드로 성장하는 기업을 목표로 하고 있습니다.
           </p>
-        </v-col>
-        <v-col lg="1">
         </v-col>
       </v-row>
     </v-container>
@@ -69,25 +61,17 @@
         </v-col>
       </v-row>
       <v-row class="mb-12" justify="left">
-        <v-col lg="1">
-        </v-col>
-        <v-col lg="11">
+        <v-col>
           <p class="text-left" style="font-size: 28px;">행복한 육아의 시작!<br>이제 버들이 함께합니다.</p>
         </v-col>
       </v-row>
       <v-row class="mb-12" justify="center">
-        <v-col lg="1">
-        </v-col>
-        <v-col lg="10" class="text-center">
+        <v-col class="text-center">
           <v-card style="margin-bottom: 10px;"><v-img src='../assets/business_img01.png'></v-img></v-card>
-        </v-col>
-        <v-col lg="1">
         </v-col>
       </v-row>
       <v-row class="mb-12" justify="center">
-        <v-col lg="1">
-        </v-col>
-        <v-col lg="10" class="text-left">
+        <v-col class="text-left">
           <v-toolbar flat>
             <p class="text-center" style="color: brown; font-size: 21px; font-weight: bold;">버들 육아 가전</p>
             <v-spacer></v-spacer>
@@ -120,8 +104,6 @@
           <v-banner single-line:sticky="sticky">
             사랑스러운 우리 아이들의 건강과 편안함, 아름다움을 고려한 스타일링으로 특별한 버들만의 의류를 매치해보세요.
           </v-banner>
-        </v-col>
-        <v-col lg="1">
         </v-col>
       </v-row>
     </v-container>

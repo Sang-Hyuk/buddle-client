@@ -71,8 +71,6 @@ import mainImg2 from '../assets/main_metapo02.png';
 import mainImg3 from '../assets/main_metapo03.png';
 
 export default {
-
-
   data () {
     return {
       items: [

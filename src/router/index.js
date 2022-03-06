@@ -5,6 +5,7 @@ import CompanyView from '../views/CompanyView'
 import BusinessView from '../views/BusinessView'
 import ProductView from '../views/ProductView'
 
+
 Vue.use(VueRouter)
 
 const routes = [
