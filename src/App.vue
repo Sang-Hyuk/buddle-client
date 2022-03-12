@@ -131,7 +131,8 @@
           <v-list>
             <v-btn
                 text
-                @click="openItemModal"
+                link
+                @click="moveToAdminPage"
             >
               <span class="mr-2">제품등록</span>
             </v-btn>
@@ -310,9 +311,7 @@
                   </v-col>
                 </v-row>
                 <v-row class="md-12" style="height: 75px;">
-                  <v-col
-                      sm="2"
-                      md="2">
+                  <v-col cols="2">
                     <v-card-text>
                       <p class="text-left font-weight-black">우편번호</p>
                     </v-card-text>
@@ -333,7 +332,7 @@
                         depressed
                         color="primary"
                         width="100%"
-                        height="65%"
+                        height="56px"
                         @click="showApi"
                     >
                       우편번호 찾기
@@ -523,7 +522,7 @@
                 </v-row>
                 <v-divider></v-divider>
                 <v-row class="md-12" style="height: 75px;">
-                  <v-col cols="3"
+                  <v-col cols="4"
                       class="text-center"
                       style="width: 150px !important;">
                     <v-checkbox
@@ -628,7 +627,6 @@ export default {
     drawer: false,
     gradient: 'rgba(0,0,0,.7), rgba(0,0,0,.7)',
     product: [
-      {title:'회사소개', icon:'mdi-view-dashboard', to:'/company'},
       {title:'자동 분유제조기', icon:'mdi-view-dashboard', to:'/product'},
     ],
     user: [
@@ -705,10 +703,11 @@ export default {
       { name: "쿠팡", value:1 },
       { name: "오프라인 매장", value:2 },
       { name: "기타", value:3 },
+    ],
+    loginResponse: [
     ]
   }),
   computed: {
-
   },
   return: {
   },
@@ -731,8 +730,31 @@ export default {
     },
     async doLogin() {
 
-      if (!this.loginValidate())
+      try {
+        let loginResult = await this.loginCheck()
+        console.log(loginResult) // 로그인 성공하면 true, 아니면 false
+        console.log(loginResult.data.success);
+        if (!loginResult.data.success) {
+          alert(loginResult.data.message);
+          return;
+        } else {
+          alert("로그인 되었습니다.");
+          sessionStorage.setItem("access_token",loginResult.data.data.access_token)
+          console.log(sessionStorage.getItem("access_token"));
+          this.$router.go();
+        }
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    loginValidate () {
+      return this.$refs.form.validate();
+    },
+    async loginCheck() {
+
+      if (!this.loginValidate()) {
         return;
+      }
 
       const url = "http://3.38.101.67/v1/user/login";
 
@@ -741,26 +763,15 @@ export default {
         "password": this.form.password
       }
 
-      this.$axios.post(url,data,{
+      return this.$axios.post(url,data,{
         withCredential : true
-      }).then(function(res){
-
-        if (res.data.success) {
-          localStorage.setItem("access_token", res.data.data.access_token);
-        }
-
-      }).catch(function(err){
-        console.log(err)
       });
-    },
-    loginValidate () {
-      return this.$refs.form.validate();
     },
     /* login modal method end */
 
     /* item regit modal method start */
     openItemModal() {
-      if (localStorage.getItem("access_token") == "" || localStorage.getItem("access_token") == null) {
+      if (sessionStorage.getItem("access_token") == "" || sessionStorage.getItem("access_token") == null) {
         alert("권한이 없습니다.");
         return;
       }
@@ -839,15 +850,26 @@ export default {
       return this.$refs.itemForm.validate();
     },
     doLogout () {
+      alert("로그아웃 되었습니다.");
       localStorage.clear();
     },
     selectFile(file) {
       console.log(file)
       this.itemForm.file = file;
       console.log(this.itemForm.file)
-    }
+    },
     /* item regit modal method end */
-  }
+
+    /* admin page start */
+    moveToAdminPage() {
+      if (sessionStorage.getItem("access_token") == "" || sessionStorage.getItem("access_token") == null) {
+        alert("권한이 없습니다.");
+        return;
+      }
+      this.$router.push({ path: '/admin' });
+    },
+    /* admin page ent */
+  },
 };
 </script>
 

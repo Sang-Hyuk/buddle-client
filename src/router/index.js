@@ -4,7 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import CompanyView from '../views/CompanyView'
 import BusinessView from '../views/BusinessView'
 import ProductView from '../views/ProductView'
-
+import AdminView from '../views/AdminView'
 
 Vue.use(VueRouter)
 
@@ -28,6 +28,11 @@ const routes = [
     path: '/product',
     name: 'about',
     component: ProductView
+  },
+  {
+    path: '/admin',
+    name: 'about',
+    component: AdminView
   },
 ]
 
