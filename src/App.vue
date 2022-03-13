@@ -198,6 +198,7 @@
                     <v-text-field
                         v-model="form.password"
                         :rules="rules.password"
+                        :type="'password'"
                         color="purple darken-2"
                         label="Password"
                         required
