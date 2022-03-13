@@ -260,7 +260,7 @@ export default {
       }
 
       let token = sessionStorage.getItem("access_token");
-      const url = "http://3.38.101.67/v1/product/receipt?product_regist_seq=" + seq.product_regist_seq + "&access-token=" + "Bearer "+ token;
+      const url = "http://3.38.101.67/v1/product/receipt?product_regist_seq=" + seq.product_regist_seq + "&access-token="+token;
       const link = document.createElement('a');
 
       let fileName = seq.filename;
