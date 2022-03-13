@@ -5,12 +5,12 @@
 
       <v-row class="mb-12" style="margin-bottom: 0px !important;">
         <v-row class="md-12">
-          <v-col cols="2">
+          <v-col cols="1">
             <v-card-text>
               <p class="text-right font-weight-bold" style="color:red">파일업로드</p>
             </v-card-text>
           </v-col>
-          <v-col cols="4">
+          <v-col cols="2">
             <template>
               <v-file-input
                   color="deep-purple accent-4"
@@ -58,11 +58,10 @@
           </v-col>
         </v-row>
       </v-row>
-
       <v-row class="mb-12" justify="left">
         <v-container fluid>
-          <v-row class="md-12" style="height: 50px;">
-            <v-col cols="2">
+          <v-row class="md-12" style="height: 55px;">
+            <v-col cols="1">
               <v-card-text>
                 <p class="text-right font-weight-black">시리얼번호</p>
               </v-card-text>
@@ -70,71 +69,48 @@
             <v-col cols="2" style="margin-top: 5px;">
               <v-text-field
                   v-model="conditionForm.serial_no"
-                  :rules="conditionRules.serial_no"
                   color="purple darken-2"
                   outlined
                   dense
                   required
               ></v-text-field>
             </v-col>
-            <v-col cols="2">
+            <v-col cols="1">
+              <v-card-text>
+                <p class="text-right font-weight-black">정품인증</p>
+              </v-card-text>
+            </v-col>
+            <v-col cols="1" style="margin-top: -5px;">
+              <v-checkbox
+                  v-model="conditionForm.only_auth_product"
+                  label="정품인증"
+              ></v-checkbox>
+            </v-col>
+            <v-col cols="1">
+              <v-card-text>
+                <p class="text-right font-weight-black">이름</p>
+              </v-card-text>
+            </v-col>
+            <v-col cols="1" style="margin-top: 5px;">
+              <v-text-field
+                  v-model="conditionForm.name"
+                  color="purple darken-2"
+                  outlined
+                  dense
+              ></v-text-field>
+            </v-col>
+            <v-col cols="1">
               <v-card-text>
                 <p class="text-right font-weight-black">핸드폰번호</p>
               </v-card-text>
             </v-col>
             <v-col cols="2" style="margin-top: 5px;">
               <v-text-field
-                  v-model="conditionForm.phone1"
-                  :rules="conditionRules.phone1_rule"
+                  v-model="conditionForm.phone"
+                  :maxlength="11"
+                  :type="'number'"
                   color="purple darken-2"
-                  label=""
-                  outlined
-                  dense
-              ></v-text-field>
-            </v-col>
-            <v-col cols="2" style="margin-top: 5px;">
-              <v-text-field
-                  v-model="conditionForm.phone2"
-                  :rules="conditionRules.phone2_rule"
-                  color="purple darken-2"
-                  label=""
-                  outlined
-                  dense
-              ></v-text-field>
-            </v-col>
-            <v-col cols="2" style="margin-top: 5px;">
-              <v-text-field
-                  v-model="conditionForm.phone3"
-                  :rules="conditionRules.phone3_rule"
-                  color="purple darken-2"
-                  label=""
-                  outlined
-                  dense
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row class="md-12" style="height: 50px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-right font-weight-black">정품인증</p>
-              </v-card-text>
-            </v-col>
-            <v-col cols="2" style="margin-top: -8px;">
-              <v-checkbox
-                  v-model="conditionForm.only_auth_product"
-                  label="정품인증"
-              ></v-checkbox>
-            </v-col>
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-right font-weight-black">이름</p>
-              </v-card-text>
-            </v-col>
-            <v-col cols="4" style="margin-top: 5px;">
-              <v-text-field
-                  v-model="conditionForm.name"
-                  :rules="conditionRules.name_rule"
-                  color="purple darken-2"
+                  label="-포함 입력하세요."
                   outlined
                   dense
               ></v-text-field>
@@ -152,6 +128,7 @@
             </v-col>
           </v-row>
         </v-container>
+        <br>
         <v-col col="12">
           <v-data-table :headers="headers" :items="desserts">
             <template v-slot:item="row">
@@ -195,50 +172,39 @@ export default {
     desserts: [],
     conditionForm: {
       name: '',
-      phone1: '',
-      phone2: '',
-      phone3: '',
+      phone: '',
       serial_no: '',
       only_auth_product: false,
     },
     conditionRules: {
       serial_no: [val => (val || '').length > 0 || '시리얼번호를 입력하세요.'],
-      phone1_rule: [
-        val => !/[^0-9]/.test(val) || '숫자만 입력 가능합니다.',
-        val => !(val && val.length > 3) || '3자리만 입력 가능합니다.',
-      ],
-      phone2_rule: [
-        val => !/[^0-9]/.test(val) || '숫자만 입력 가능합니다.',
-        val => !(val && val.length > 4) || '4자리만 입력 가능합니다.',
-      ],
-      phone3_rule: [
-        val => !/[^0-9]/.test(val) || '숫자만 입력 가능합니다.',
-        val => !(val && val.length > 4) || '4자리만 입력 가능합니다.',
+      phone_rule: [
+        val => !(val && val.length > 11) || '11자리만 입력 가능합니다.',
       ],
     },
     file: '',
   }),
   methods: {
+    checkNumber(){
+      return this.conditionForm.phone = this.conditionForm.phone.replace(/[^0-9]/g, '');
+    },
     doSearch() {
 
-      const url = "http://3.38.101.67/v1/product/manage";
+      let token = sessionStorage.getItem("access_token");
 
-      let phone = '';
-
-      if (this.conditionForm.phone1 == '' || this.conditionForm.phone2 == '' || this.conditionForm.phone3 == '') {
-        phone = '';
-      } else {
-        phone = this.conditionForm.phone1 + '-' + this.conditionForm.phone2 + '-' + this.conditionForm.phone3;
+      if (token == null) {
+        alert("로그인을 먼저 해주세요.");
+        return;
       }
+
+      const url = "http://3.38.101.67/v1/product/manage";
 
       const params = new URLSearchParams();
 
       params.append("name", this.conditionForm.name);
-      params.append("phone", phone);
+      params.append("phone", this.conditionForm.phone);
       params.append("serial_no", this.conditionForm.serial_no);
       params.append("only_auth_product", this.conditionForm.only_auth_product);
-
-      let token = sessionStorage.getItem("access_token");
 
       this.$axios.get(url,
           {params:params,
@@ -253,7 +219,7 @@ export default {
       })
     },
     onButtonClick(seq) {
-      console.log(seq)
+
       if (seq.product_regist_seq == '' || seq.product_regist_seq == null || seq.product_regist_seq == undefined) {
         alert("정품인증 상품이 아닙니다.");
         return;
