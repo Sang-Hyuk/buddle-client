@@ -555,7 +555,7 @@
                     width="50%"
                     @click="doRegItem"
                 >
-                  Login
+                  등록
                 </v-btn>
               </v-card-actions>
             </v-form>

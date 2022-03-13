@@ -259,42 +259,22 @@ export default {
         return;
       }
 
-      const url = "http://3.38.101.67/v1/product/receipt";
-
-      const params = new URLSearchParams();
-
-      params.append("product_regist_seq", seq.product_regist_seq);
-
       let token = sessionStorage.getItem("access_token");
+      const url = "http://3.38.101.67/v1/product/receipt?product_regist_seq=" + seq.product_regist_seq + "&access-token=" + "Bearer "+ token;
+      const link = document.createElement('a');
 
-      this.$axios.get(url,
-          {params:params,
-            headers: {
-              "access-token" : "Bearer "+ token,
-              "responseType" : "arraybuffer"
-            }
-          }
-      )
-      .then((res)=> {
-
-        console.log(res)
-
-        const url = window.URL.createObjectURL(new Blob([res.data]));
-        const link = document.createElement('a');
-
-        let fileName = seq.filename;
-        if (fileName) {
-          const [ fileNameMatch ] = fileName.split(';').filter(str => str.includes('filename'));
-          if (fileNameMatch)
-            [ , fileName ] = fileNameMatch.split('=');
-        }
-        link.href = url;
-        link.setAttribute('download', `${fileName}`);
-        link.style.cssText = 'display:none';
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-      })
+      let fileName = seq.filename;
+      if (fileName) {
+        const [ fileNameMatch ] = fileName.split(';').filter(str => str.includes('filename'));
+        if (fileNameMatch)
+          [ , fileName ] = fileNameMatch.split('=');
+      }
+      link.href = url;
+      link.setAttribute('download', `${fileName}`);
+      link.style.cssText = 'display:none';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
     },
     selectFile(file) {
       console.log(file)
