@@ -771,10 +771,10 @@ export default {
 
     /* item regit modal method start */
     openItemModal() {
-      if (sessionStorage.getItem("access_token") == "" || sessionStorage.getItem("access_token") == null) {
+      /*if (sessionStorage.getItem("access_token") == "" || sessionStorage.getItem("access_token") == null) {
         alert("권한이 없습니다.");
         return;
-      }
+      }*/
       this.itemDialog = true
     },
     showApi() {
@@ -842,6 +842,7 @@ export default {
       this.$axios.request(config)
           .then(res => {
             console.log(res.data);
+            alert(res.data.data.message);
           }).catch(err => {
             console.log(err.response);
           });
