@@ -2,17 +2,17 @@
   <v-app>
     <v-app-bar
         app
-        dark
+        elevation="0"
+        style="background-color: white;"
     >
       <!--  side menu star  -->
-      <v-app-bar-nav-icon @click="drawer = !drawer" class="d-none d-flex d-sm-flex d-md-flex d-lg-none">
+<!--      <v-app-bar-nav-icon @click="drawer = !drawer" class="d-none d-flex d-sm-flex d-md-flex d-lg-none">
         <v-menu
             bottom
             left
         >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-                dark
                 icon
                 v-bind="attrs"
                 v-on="on"
@@ -20,6 +20,31 @@
               <v-icon>mdi-dots-vertical</v-icon>
             </v-btn>
           </template>
+
+
+          <v-menu open-on-hover bottom offset-x>
+            <template v-slot:activator="{ on }">
+              <v-btn
+                  color="primary"
+                  dark
+                  v-on="on"
+              >
+                제품소개
+              </v-btn>
+            </template>
+
+            <v-list>
+              <v-list-tile
+                  v-for="(item, index) in product"
+                  :key="index"
+                  :to="item.to"
+              >
+                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+              </v-list-tile>
+            </v-list>
+          </v-menu>
+
+
           <v-list>
             <v-btn
                 text
@@ -45,7 +70,7 @@
             </v-btn>
           </v-list>
         </v-menu>
-      </v-app-bar-nav-icon>
+      </v-app-bar-nav-icon>-->
       <!--  side menu end  -->
 
       <v-row align="center"
@@ -61,63 +86,101 @@
             width="200"
             dark
         />
-        <v-btn
-            text
-            href="/"
-            class="d-none d-lg-flex d-xl-flex d-none"
-        >
-          <span class="mr-2">Home</span>
-        </v-btn>
-        <v-btn
-            text
-            href="/company"
-            class="d-none d-lg-flex d-xl-flex d-none"
-        >
-          <span class="mr-2">Company</span>
-        </v-btn>
-        <v-menu>
+        <v-menu open-on-hover top offset-y>
           <template v-slot:activator="{ attrs, on }">
             <v-btn
                 text
                 v-bind="attrs"
                 v-on="on"
                 class="d-none d-lg-flex d-xl-flex d-none"
+                elevation="0"
             >
-              PRODUCT
+              버들소개
             </v-btn>
           </template>
-          <v-list>
+          <br><br>
+          <v-list elevation="0">
+            <v-list-item
+                v-for="item in info"
+                :key="item.title"
+                :to="item.to"
+                color="white"
+            >
+              <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="font-size: 0.875rem; color: black; margin-left: -15px;">
+              </v-btn>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-menu open-on-hover top offset-y>
+          <template v-slot:activator="{ attrs, on }">
+            <v-btn
+                text
+                v-bind="attrs"
+                v-on="on"
+                class="d-none d-lg-flex d-xl-flex d-none"
+                elevation="0"
+            >
+              제품
+            </v-btn>
+          </template>
+          <br><br>
+          <v-list elevation="0">
             <v-list-item
                 v-for="item in product"
                 :key="item.title"
                 :to="item.to"
-                link
+                color="white"
             >
-              <v-list-item-title v-text="item.title"></v-list-item-title>
+              <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="font-size: 0.875rem; color: black; margin-left: -15px;">
+              </v-btn>
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-menu
-            bottom
-            left
-        >
-          <template v-slot:activator="{ on, attrs }">
+        <v-menu open-on-hover top offset-y style="box-shadow: white">
+          <template v-slot:activator="{ attrs, on }">
             <v-btn
-                dark
-                icon
+                text
                 v-bind="attrs"
                 v-on="on"
+                class="d-none d-lg-flex d-xl-flex d-none"
+                elevation="0"
             >
-              <v-icon>mdi-account-outline</v-icon>
+              고객서비스
             </v-btn>
           </template>
-
+          <br><br>
+          <v-list elevation="0">
+            <v-list-item
+                v-for="item in service"
+                :key="item.title"
+                :to="item.to"
+                elevation="0"
+                color="white"
+            >
+              <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="font-size: 0.875rem; color: black; margin-left: -15px;">
+              </v-btn>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-menu open-on-hover top offset-y style="box-shadow: white">
+          <template v-slot:activator="{ attrs, on }">
+            <v-btn
+                text
+                v-bind="attrs"
+                v-on="on"
+                class="d-none d-lg-flex d-xl-flex d-none"
+                elevation="0"
+            >
+              정품등록
+            </v-btn>
+          </template>
+          <br><br>
           <v-list>
             <v-btn
                 text
-                @click="openModal"
+                @click="openItemModal"
             >
-              <span class="mr-2">로그인</span>
+              <span class="mr-2">정품등록</span>
             </v-btn>
           </v-list>
           <v-list>
@@ -125,7 +188,53 @@
                 text
                 @click="openItemModal"
             >
-              <span class="mr-2">정품등록</span>
+              <span class="mr-2">정품등록확인</span>
+            </v-btn>
+          </v-list>
+        </v-menu>
+
+        <v-menu open-on-hover top offset-y style="box-shadow: white">
+          <template v-slot:activator="{ attrs, on }">
+            <v-btn
+                text
+                v-bind="attrs"
+                v-on="on"
+                class="d-none d-lg-flex d-xl-flex d-none"
+                elevation="0"
+            >
+              커뮤니티
+            </v-btn>
+          </template>
+          <br><br>
+          <v-list elevation="0" style="text-align: left;">
+            <v-list-item
+                v-for="item in community"
+                :key="item.title"
+                :to="item.to"
+                color="white"
+            >
+              <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="font-size: 0.875rem; color: black; margin-left: -15px;">
+              </v-btn>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-menu open-on-hover top offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+                icon
+                v-bind="attrs"
+                v-on="on"
+            >
+              <v-icon>mdi-account</v-icon>
+            </v-btn>
+          </template>
+          <br><br>
+          <v-list elevation="0">
+            <v-btn
+                text
+                @click="openModal"
+            >
+              <span class="mr-2">로그인</span>
             </v-btn>
           </v-list>
           <v-list>
@@ -534,6 +643,7 @@
                   </v-col>
                 </v-row>
                 <v-divider></v-divider>
+                <br>
                 <v-row class="md-12" style="height: 75px;">
                   <v-col cols="2"
                       class="text-center"
@@ -546,7 +656,24 @@
                         required
                     ></v-checkbox>
                   </v-col>
-                  <v-col cols="2"
+
+
+                  <v-textarea
+                      style="font-size: 13px; line-height: 1px;"
+                      readonly
+                      resize
+                      rows="3"
+                      name="input-7-1"
+                      filled
+                      value="* 제1조 (개인정보 수집에 대한 동의) : 버들(이하 회사)는 이용자들이 회사의 개인정보취급방침 또는 이용약관의 내용에 대하여 “동의”버튼 또는 “취소”버튼을 클릭할 수 있는 절차를 마련하여, “동의”버튼을 클릭하면 개인정보 수집에 대해 동의한 것으로 봅니다.
+* 제2조 (개인정보 수집항목) : 온라인 문의를 통한 상담을 위해 처리하는 개인정보 항목은 아래와 같습니다. 수집 항목 : 이름, 전화번호, 주소, 구매 관련 이력
+* 제3조 (개인정보의 이용목적) : 회사는 이용자의 사전 동의 없이는 이용자의 개인 정보를 공개하지 않으며, 원활한 고객상담, 각종 서비스의 제공을 위해 아래와 같이 개인정보를 수집하고 있습니다. 모든 정보는 상기 목적에 필요한 용도 이외로는 사용되지 않으며 수집 정보의 범위나 사용 목적, 용도가 변경될 시에는 반드시 사전 동의를 구할 것입니다. - 성명 제품 상담에 따른 본인 확인 - 이메일, 전화번호 제품상담 및 이벤트 관련 고지사항 전달, 새로운 서비스 및 신상품 정보 제공(DM, SMS, 이메일 등 이용) 이용자는 개인정보의 수집/이용에 대한 동의를 거부할 수 있습니다. 다만, 동의를 거부하는 경우 온라인 문의를 통한 상담은 불가하며 서비스 이용 및 혜택 제공에 제한을 받을 수 있습니다.
+* 제4조 (개인정보의 보유 및 이용기간) : 원칙적으로 개인정보 수집 및 이용 목적이 달성된 후에는 해당 정보를 사용하지 않습니다. 그리고 상법, 전자상거래 등에서의 소비자보호에 관한 법률 등 관계 법렵의 규정에 의하여 보존할 필요가 있는 경우 회사는 관계 법령에서 정한 일정한 기간 동안 정보를 보관합니다. 이 경우 회사는 보관하는 정보를 그 보관의 목적으로만 이용하며 보존기간은 아래와 같습니다. 계약 또는 청약철회 등에 관한 기록 : 5년(전자상거래등에서의 소비자보호에 관한 법률) 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년(전자상거래등에서의 소비자 보호에 관한 법률) 시용정보의 수집/처리 및 이용 등에 관한 기록 : 3년(신용정보의 이용 및 보호에 관한 법률) 회사는 귀중한 이용자의 개인정보를 안전하게 처리하며, 유출의 방지를 위하여 다음과 같은 방법을 통하여 개인정보를 파기합니다. 종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각을 통하여 파기합니다. 전자적 파일 형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다."
+                  >
+                  </v-textarea>
+
+
+<!--                  <v-col cols="2"
                       class="text-center"
                       style="margin-top: 1%;">
                     <v-btn
@@ -564,8 +691,8 @@
                     >
                       <v-tooltip
                           v-model="show"
-                          top
                           color="primary"
+                          style="top:30%;"
                       >
                         <span> * 제1조 (개인정보 수집에 대한 동의) : 버들(이하 회사)는 이용자들이 회사의 개인정보취급방침 또는 이용약관의 내용에 대하여 “동의”버튼 또는 “취소”버튼을 클릭할 수 있는 절차를 마련하여, “동의”버튼을 클릭하면 개인정보 수집에 대해 동의한 것으로 봅니다.<br>
                                * 제2조 (개인정보 수집항목) : 온라인 문의를 통한 상담을 위해 처리하는 개인정보 항목은 아래와 같습니다. 수집 항목 : 이름, 전화번호, 주소, 구매 관련 이력<br>
@@ -573,11 +700,10 @@
                                * 제4조 (개인정보의 보유 및 이용기간) : 원칙적으로 개인정보 수집 및 이용 목적이 달성된 후에는 해당 정보를 사용하지 않습니다.<br>&nbsp;그리고 상법, 전자상거래 등에서의 소비자보호에 관한 법률 등 관계 법렵의 규정에 의하여 보존할 필요가 있는 경우 회사는 관계 법령에서 정한 일정한 기간 동안 정보를 보관합니다.&nbsp;이 경우 회사는 보관하는 정보를 그 보관의 목적으로만 이용하며 보존기간은 아래와 같습니다.<br>&nbsp;계약 또는 청약철회 등에 관한 기록 : 5년(전자상거래등에서의 소비자보호에 관한 법률)<br>&nbsp;소비자의 불만 또는 분쟁처리에 관한 기록 : 3년(전자상거래등에서의 소비자 보호에 관한 법률)<br>&nbsp;시용정보의 수집/처리 및 이용 등에 관한 기록 : 3년(신용정보의 이용 및 보호에 관한 법률) 회사는 귀중한 이용자의 개인정보를 안전하게 처리하며,&nbsp;유출의 방지를 위하여 다음과 같은 방법을 통하여 개인정보를 파기합니다.<br>&nbsp;종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각을 통하여 파기합니다.&nbsp;전자적 파일 형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다.</span>
                       </v-tooltip>
                     </v-col>
-
-
-                  </v-col>
+                  </v-col>-->
                 </v-row>
               </v-container>
+              <br>
               <v-card-actions style="margin-right: 30%;">
                 <v-spacer></v-spacer>
                 <v-btn
@@ -658,8 +784,30 @@ export default {
   data: () => ({
     drawer: false,
     gradient: 'rgba(0,0,0,.7), rgba(0,0,0,.7)',
+    info: [
+      {title:'회사소개', icon:'mdi-view-dashboard', to:'/company'},
+      {title:'비전', icon:'mdi-view-dashboard', to:'/vision'},
+      {title:'사업소개', icon:'mdi-view-dashboard', to:'/business'},
+    ],
     product: [
-      {title:'자동 분유제조기', icon:'mdi-view-dashboard', to:'/product'},
+      {title:'분유제조기', icon:'mdi-view-dashboard', to:'/product'},
+      {title:'유아동식기', icon:'mdi-view-dashboard', to:'/product'},
+      {title:'친환경가구', icon:'mdi-view-dashboard', to:'/product'},
+    ],
+    service: [
+      {title:'온라인문의', icon:'mdi-view-dashboard', to:'/product'},
+      {title:'A/S신청', icon:'mdi-view-dashboard', to:'/product'},
+      {title:'A/S신청확인', icon:'mdi-view-dashboard', to:'/product'},
+      {title:'동영상가이드', icon:'mdi-view-dashboard', to:'/product'},
+      {title:'F&Q', icon:'mdi-view-dashboard', to:'/product'},
+    ],
+    itemreg: [
+      {title:'정품등록', icon:'mdi-view-dashboard', to:'/product'},
+      {title:'정품등록확인', icon:'mdi-view-dashboard', to:'/product'},
+    ],
+    community: [
+      {title:'공지사항', icon:'mdi-view-dashboard', to:'/product'},
+      {title:'이벤트', icon:'mdi-view-dashboard', to:'/product'},
     ],
     user: [
       {title:'로그인', icon:'mdi-view-dashboard', to:'openModal'},
@@ -789,7 +937,7 @@ export default {
         return;
       }
 
-      const url = "http://3.38.101.67/v1/user/login";
+      const url = "http://52.79.192.123/v1/user/login";
 
       let data = {
         "id": this.form.id,

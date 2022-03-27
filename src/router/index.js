@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CompanyView from '../views/CompanyView'
 import BusinessView from '../views/BusinessView'
+import VisionView from '../views/VisionView'
 import ProductView from '../views/ProductView'
 import AdminView from '../views/AdminView'
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/business',
     name: 'about',
     component: BusinessView
+  },
+  {
+    path: '/vision',
+    name: 'about',
+    component: VisionView
   },
   {
     path: '/product',
