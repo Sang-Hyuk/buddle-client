@@ -86,7 +86,7 @@
             width="200"
             dark
         />
-        <v-menu open-on-hover top offset-y>
+        <v-menu open-on-hover top offset-y style="box-shadow: white">
           <template v-slot:activator="{ attrs, on }">
             <v-btn
                 text
@@ -104,6 +104,7 @@
                 v-for="item in info"
                 :key="item.title"
                 :to="item.to"
+                elevation="0"
                 color="white"
             >
               <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="font-size: 0.875rem; color: black; margin-left: -15px;">
@@ -111,7 +112,7 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-menu open-on-hover top offset-y>
+        <v-menu open-on-hover top offset-y style="box-shadow: white">
           <template v-slot:activator="{ attrs, on }">
             <v-btn
                 text
@@ -129,6 +130,7 @@
                 v-for="item in product"
                 :key="item.title"
                 :to="item.to"
+                elevation="0"
                 color="white"
             >
               <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="font-size: 0.875rem; color: black; margin-left: -15px;">
@@ -211,7 +213,7 @@
                 v-for="item in community"
                 :key="item.title"
                 :to="item.to"
-                color="white"
+                elevation="0"
             >
               <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="font-size: 0.875rem; color: black; margin-left: -15px;">
               </v-btn>
