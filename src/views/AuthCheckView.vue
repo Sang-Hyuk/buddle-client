@@ -252,17 +252,30 @@ export default {
           {params:params}
       )
       .then((res)=> {
+        console.log(res.data)
         console.log(res.data.data)
-        this.desserts = res.data.data;
-        let rows = '';
-        rows = res.data.data;
-        this.resName = rows.name;
-        this.resPhone = rows.phone;
-        this.resProductType = rows.product_type;
-        this.resMarketType = rows.market_type;
-        this.resPurchaseDate = rows.purchase_date;
-        this.resSerialNo = rows.serial_no;
-      })
+        /*this.desserts = res.data.data;*/
+        if (res.data.success == true) {
+          let rows = '';
+          rows = res.data.data;
+          this.resName = rows.name;
+          this.resPhone = rows.phone;
+          this.resProductType = rows.product_type;
+          this.resMarketType = rows.market_type;
+          this.resPurchaseDate = rows.purchase_date;
+          this.resSerialNo = rows.serial_no;
+        } else {
+          alert(res.data.message);
+          this.resName = '';
+          this.resPhone = '';
+          this.resProductType = '';
+          this.resMarketType = '';
+          this.resPurchaseDate = '';
+          this.resSerialNo = '';
+        }
+      }).catch(err => {
+        console.log(err.response);
+      });
     }
   },
 }
