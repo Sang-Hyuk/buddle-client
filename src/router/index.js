@@ -5,6 +5,7 @@ import CompanyView from '../views/CompanyView'
 import BusinessView from '../views/BusinessView'
 import VisionView from '../views/VisionView'
 import ProductView from '../views/ProductView'
+import AsView from '../views/AsView'
 import AdminView from '../views/AdminView'
 
 Vue.use(VueRouter)
@@ -34,6 +35,11 @@ const routes = [
     path: '/product',
     name: 'about',
     component: ProductView
+  },
+  {
+    path: '/as',
+    name: 'as',
+    component: AsView
   },
   {
     path: '/admin',

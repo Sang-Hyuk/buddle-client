@@ -107,8 +107,7 @@
             <v-col cols="2" style="margin-top: 5px;">
               <v-text-field
                   v-model="conditionForm.phone"
-                  :maxlength="11"
-                  :type="'number'"
+                  :maxlength="13"
                   color="purple darken-2"
                   label="-포함 입력하세요."
                   outlined
@@ -197,7 +196,7 @@ export default {
         return;
       }
 
-      const url = "http://3.38.101.67/v1/product/manage";
+      const url = "http://15.165.183.94/v1/product/manage";
 
       const params = new URLSearchParams();
 
@@ -226,7 +225,7 @@ export default {
       }
 
       let token = sessionStorage.getItem("access_token");
-      const url = "http://3.38.101.67/v1/product/receipt?product_regist_seq=" + seq.product_regist_seq + "&access-token="+token;
+      const url = "http://15.165.183.94/v1/product/receipt?product_regist_seq=" + seq.product_regist_seq + "&access-token="+token;
       const link = document.createElement('a');
 
       let fileName = seq.filename;
@@ -249,7 +248,7 @@ export default {
     },
     uploadFile() {
 
-      const url = "http://3.38.101.67/v1/product";
+      const url = "http://15.165.183.94/v1/product";
 
       const formData = new FormData();
       formData.append('csv_file', this.file[0]);

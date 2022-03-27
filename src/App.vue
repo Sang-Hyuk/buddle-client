@@ -796,7 +796,7 @@ export default {
     ],
     service: [
       {title:'온라인문의', icon:'mdi-view-dashboard', to:'/product'},
-      {title:'A/S신청', icon:'mdi-view-dashboard', to:'/product'},
+      {title:'A/S신청', icon:'mdi-view-dashboard', to:'/as'},
       {title:'A/S신청확인', icon:'mdi-view-dashboard', to:'/product'},
       {title:'동영상가이드', icon:'mdi-view-dashboard', to:'/product'},
       {title:'F&Q', icon:'mdi-view-dashboard', to:'/product'},
@@ -998,7 +998,7 @@ export default {
       if (!this.validate())
         return;
 
-      const url = "http://3.38.101.67/v1/product-regist";
+      const url = "http://15.165.183.94/v1/product-regist";
 
       const formData = new FormData();
       formData.append("name", this.itemForm.name);
@@ -1023,7 +1023,8 @@ export default {
       this.$axios.request(config)
           .then(res => {
             console.log(res.data);
-            alert(res.data.data.message);
+            alert(res.data.message);
+            this.$router.push({ path: '/' });
           }).catch(err => {
             console.log(err.response);
           });
@@ -1034,6 +1035,8 @@ export default {
     doLogout () {
       alert("로그아웃 되었습니다.");
       localStorage.clear();
+      sessionStorage.clear();
+      this.$router.push({ path: '/' });
     },
     selectFile(file) {
       console.log(file)
