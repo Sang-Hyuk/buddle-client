@@ -185,17 +185,13 @@
             <v-btn
                 text
                 @click="openItemModal"
+
             >
               <span class="mr-2">정품등록</span>
             </v-btn>
           </v-list>
           <v-list>
-            <v-btn
-                text
-                @click="openItemModal"
-            >
-              <span class="mr-2">정품등록확인</span>
-            </v-btn>
+            <router-link :to="{ name: 'authcheck'}" style="text-decoration: none;"> <v-btn text>정품등록확인</v-btn> </router-link>
           </v-list>
         </v-menu>
 
@@ -803,7 +799,7 @@ export default {
     service: [
       {title:'온라인문의', icon:'mdi-view-dashboard', to:'/product'},
       {title:'A/S신청', icon:'mdi-view-dashboard', to:'/as'},
-      {title:'A/S신청확인', icon:'mdi-view-dashboard', to:'/product'},
+      {title:'A/S신청확인', icon:'mdi-view-dashboard', to:'/ascheck'},
       {title:'동영상가이드', icon:'mdi-view-dashboard', to:'/product'},
       {title:'F&Q', icon:'mdi-view-dashboard', to:'/product'},
     ],
