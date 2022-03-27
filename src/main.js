@@ -4,6 +4,8 @@ import vuetify from './plugins/vuetify'
 import router from './router'
 import axios from 'axios'
 
+window.$ = require('jquery')
+
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 

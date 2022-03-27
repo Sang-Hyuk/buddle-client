@@ -7,7 +7,7 @@
             <v-carousel
                 cycle
                 hide-delimiters
-                height="750"
+                height="460"
             >
               <v-carousel-item
                   v-for="(item,i) in items"

@@ -151,6 +151,19 @@
         </v-col>
       </v-row>
     </v-container>
+    <div class="loading" style="display: none;">
+      <v-img
+          alt="Buddle Logo"
+          class="shrink mr-2"
+          containn
+          src="@/assets/Spin-1s-200px.gif"
+          transition="scale-transition"
+          width="200"
+          @click="goToHome()"
+          dark
+      />
+
+    </div>
   </v-container>
 </template>
 
@@ -248,6 +261,7 @@ export default {
     },
     uploadFile() {
 
+      window.$('.loading').show();
       const url = "http://15.165.183.94/v1/product";
 
       const formData = new FormData();
@@ -267,11 +281,34 @@ export default {
       this.$axios.request(config)
           .then(res => {
             console.log(res.data);
+            window.$('.loading').hide();
             alert("업로드 성공 : " + res.data.success+"건, " + "업로드 실패 : " + res.data.failure + "건");
           }).catch(err => {
+        window.$('.loading').hide();
         console.log(err.response);
       });
     }
   },
 }
 </script>
+<style scoped>
+.loading{ /*화면 전체를 어둡게 합니다.*/
+  position: fixed;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  background: white; /*not in ie */
+  z-index: 1070;
+  opacity: 0.75;
+  filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000', endColorstr='#20000000');    /* ie */
+}
+.loading div{ /*로딩 이미지*/
+  position: fixed;
+  top:45%;
+  left:45%;
+  right: 30%;
+  opacity: 0.75;
+}
+</style>
+

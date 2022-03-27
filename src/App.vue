@@ -77,16 +77,20 @@
              justify="space-around"
              no-gutters
       >
-        <v-img
-            alt="Buddle Logo"
-            class="shrink mr-2"
-            containn
-            src="@/assets/logo.png"
-            transition="scale-transition"
-            width="200"
-            dark
-        />
-        <v-menu open-on-hover top offset-y style="box-shadow: white">
+        <v-btn text>
+          <v-img
+              alt="Buddle Logo"
+              class="shrink mr-2"
+              containn
+              src="@/assets/logo.png"
+              transition="scale-transition"
+              width="200"
+              @click="goToHome()"
+              dark
+          />
+        </v-btn>
+
+        <v-menu open-on-hover top offset-y>
           <template v-slot:activator="{ attrs, on }">
             <v-btn
                 text
@@ -112,7 +116,7 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-menu open-on-hover top offset-y style="box-shadow: white">
+        <v-menu open-on-hover top offset-y>
           <template v-slot:activator="{ attrs, on }">
             <v-btn
                 text
@@ -138,7 +142,7 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-menu open-on-hover top offset-y style="box-shadow: white">
+        <v-menu open-on-hover top offset-y>
           <template v-slot:activator="{ attrs, on }">
             <v-btn
                 text
@@ -164,7 +168,7 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-menu open-on-hover top offset-y style="box-shadow: white">
+        <v-menu open-on-hover top offset-y>
           <template v-slot:activator="{ attrs, on }">
             <v-btn
                 text
@@ -195,7 +199,7 @@
           </v-list>
         </v-menu>
 
-        <v-menu open-on-hover top offset-y style="box-shadow: white">
+        <v-menu open-on-hover top offset-y>
           <template v-slot:activator="{ attrs, on }">
             <v-btn
                 text
@@ -895,6 +899,9 @@ export default {
   return: {
   },
   methods: {
+    goToHome() {
+      this.$router.push({ path: '/' });
+    },
     /* login modal method star */
     openModal() {
       this.dialog = true
@@ -1057,6 +1064,12 @@ export default {
     },
     /* admin page ent */
   },
+
 };
 </script>
+<style scoped>
+.v-menu__content {
+  box-shadow: none;
+}
+</style>
 
