@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid style="padding: 0px;">
     <v-card outlined>
       <v-row>
         <v-col>
@@ -8,6 +8,7 @@
                 cycle
                 hide-delimiters
                 height="460"
+                width="100%"
             >
               <v-carousel-item
                   v-for="(item,i) in items"
