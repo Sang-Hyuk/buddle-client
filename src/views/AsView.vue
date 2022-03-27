@@ -74,6 +74,23 @@
           <v-row class="md-12" style="height: 65px;">
             <v-col cols="2">
               <v-card-text>
+                <p class="text-left font-weight-black">이메일</p>
+              </v-card-text>
+            </v-col>
+            <v-col cols="9">
+              <v-text-field
+                  v-model="asForm.email"
+                  color="purple darken-2"
+                  label="이메일을 입력하세요."
+                  dense
+                  outlined
+                  required
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row class="md-12" style="height: 65px;">
+            <v-col cols="2">
+              <v-card-text>
                 <p class="text-left font-weight-black">우편번호</p>
               </v-card-text>
             </v-col>
@@ -543,6 +560,7 @@ export default {
       phone1: '',
       phone2: '',
       phone3: '',
+      email: '',
       zipcode: '',
       addr: '',
       addrdetail: '',
@@ -664,6 +682,7 @@ export default {
       const formData = new FormData();
       formData.append("name", this.asForm.name);
       formData.append('phone', this.asForm.phone1 + '-' + this.asForm.phone2 + '-' + this.asForm.phone3);
+      formData.append('email', this.asForm.email);
       formData.append('addr', this.asForm.addr);
       formData.append('addr_detail', this.asForm.addrdetail);
       formData.append('product_type', this.asForm.item.value);

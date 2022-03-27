@@ -8,6 +8,7 @@ import ProductView from '../views/ProductView'
 import AsView from '../views/AsView'
 import AdminView from '../views/AdminView'
 import AuthCheckView from '../views/AuthCheckView'
+import AsCheckView from "@/views/AsCheckView";
 
 Vue.use(VueRouter)
 
@@ -55,7 +56,7 @@ const routes = [
   {
     path: '/ascheck',
     name: 'about',
-    component: AuthCheckView
+    component: AsCheckView
   },
 ]
 
