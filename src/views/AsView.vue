@@ -10,7 +10,7 @@
       </v-row>
       <v-row class="mb-12" justify="center">
         <v-form
-            ref="itemForm"
+            ref="asForm"
             @submit.prevent="submit"
         >
           <v-row class="md-12" style="height: 65px;">
@@ -247,7 +247,7 @@
                     dense
                     outlined
                     :show-size="1000"
-                    @change="selectFile"
+                    @change="selectFile1"
                 >
                   <template v-slot:selection="{ index, text }">
                     <v-chip
@@ -289,7 +289,7 @@
                     dense
                     outlined
                     :show-size="1000"
-                    @change="selectFile"
+                    @change="selectFile2"
                 >
                   <template v-slot:selection="{ index, text }">
                     <v-chip
@@ -331,7 +331,7 @@
                     dense
                     outlined
                     :show-size="1000"
-                    @change="selectFile"
+                    @change="selectFile3"
                 >
                   <template v-slot:selection="{ index, text }">
                     <v-chip
@@ -373,7 +373,7 @@
                     dense
                     outlined
                     :show-size="1000"
-                    @change="selectFile"
+                    @change="selectFile4"
                 >
                   <template v-slot:selection="{ index, text }">
                     <v-chip
@@ -415,7 +415,7 @@
                     dense
                     outlined
                     :show-size="1000"
-                    @change="selectFile"
+                    @change="selectFile5"
                 >
                   <template v-slot:selection="{ index, text }">
                     <v-chip
@@ -439,7 +439,7 @@
               </template>
             </v-col>
           </v-row>
-          <v-row class="md-12" style="height: 200px;">
+          <v-row class="md-12" style="height: 180px;">
             <v-col cols="2">
               <v-card-text>
                 <p class="text-left font-weight-black">문의사항</p>
@@ -454,6 +454,35 @@
                   outlined
               ></v-textarea>
             </v-col>
+          </v-row>
+          <br>
+          <v-row class="md-12" style="height: 120px;">
+            <v-col cols="2"
+                   class="text-center"
+                   style="width: 120px !important; margin-top: 1%;">
+              <v-checkbox
+                  v-model="asForm.privacy"
+                  :rules="itemrules.privacy_rule"
+                  label="개인정보 수집 동의"
+                  dense
+                  required
+              ></v-checkbox>
+            </v-col>
+
+
+            <v-textarea
+                style="font-size: 13px; line-height: 1px;"
+                readonly
+                resize
+                rows="3"
+                name="input-7-1"
+                filled
+                value="* 제1조 (개인정보 수집에 대한 동의) : 버들(이하 회사)는 이용자들이 회사의 개인정보취급방침 또는 이용약관의 내용에 대하여 “동의”버튼 또는 “취소”버튼을 클릭할 수 있는 절차를 마련하여, “동의”버튼을 클릭하면 개인정보 수집에 대해 동의한 것으로 봅니다.
+* 제2조 (개인정보 수집항목) : 온라인 문의를 통한 상담을 위해 처리하는 개인정보 항목은 아래와 같습니다. 수집 항목 : 이름, 전화번호, 주소, 구매 관련 이력
+* 제3조 (개인정보의 이용목적) : 회사는 이용자의 사전 동의 없이는 이용자의 개인 정보를 공개하지 않으며, 원활한 고객상담, 각종 서비스의 제공을 위해 아래와 같이 개인정보를 수집하고 있습니다. 모든 정보는 상기 목적에 필요한 용도 이외로는 사용되지 않으며 수집 정보의 범위나 사용 목적, 용도가 변경될 시에는 반드시 사전 동의를 구할 것입니다. - 성명 제품 상담에 따른 본인 확인 - 이메일, 전화번호 제품상담 및 이벤트 관련 고지사항 전달, 새로운 서비스 및 신상품 정보 제공(DM, SMS, 이메일 등 이용) 이용자는 개인정보의 수집/이용에 대한 동의를 거부할 수 있습니다. 다만, 동의를 거부하는 경우 온라인 문의를 통한 상담은 불가하며 서비스 이용 및 혜택 제공에 제한을 받을 수 있습니다.
+* 제4조 (개인정보의 보유 및 이용기간) : 원칙적으로 개인정보 수집 및 이용 목적이 달성된 후에는 해당 정보를 사용하지 않습니다. 그리고 상법, 전자상거래 등에서의 소비자보호에 관한 법률 등 관계 법렵의 규정에 의하여 보존할 필요가 있는 경우 회사는 관계 법령에서 정한 일정한 기간 동안 정보를 보관합니다. 이 경우 회사는 보관하는 정보를 그 보관의 목적으로만 이용하며 보존기간은 아래와 같습니다. 계약 또는 청약철회 등에 관한 기록 : 5년(전자상거래등에서의 소비자보호에 관한 법률) 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년(전자상거래등에서의 소비자 보호에 관한 법률) 시용정보의 수집/처리 및 이용 등에 관한 기록 : 3년(신용정보의 이용 및 보호에 관한 법률) 회사는 귀중한 이용자의 개인정보를 안전하게 처리하며, 유출의 방지를 위하여 다음과 같은 방법을 통하여 개인정보를 파기합니다. 종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각을 통하여 파기합니다. 전자적 파일 형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다."
+            >
+            </v-textarea>
           </v-row>
           <v-row class="md-12">
             <v-col cols="5">
@@ -525,7 +554,6 @@ export default {
       file3: '',
       file4: '',
       file5: '',
-      privacy: '',
       contents: '',
     },
     itemrules: {
@@ -592,55 +620,6 @@ export default {
       this.snackbar = true
       this.resetForm()
     },
-    async doLogin() {
-
-      try {
-        let loginResult = await this.loginCheck()
-        console.log(loginResult) // 로그인 성공하면 true, 아니면 false
-        console.log(loginResult.data.success);
-        if (!loginResult.data.success) {
-          alert(loginResult.data.message);
-          return;
-        } else {
-          alert("로그인 되었습니다.");
-          sessionStorage.setItem("access_token",loginResult.data.data.access_token)
-          console.log(sessionStorage.getItem("access_token"));
-          this.$router.go();
-        }
-      } catch (err) {
-        console.error(err)
-      }
-    },
-    loginValidate () {
-      return this.$refs.form.validate();
-    },
-    async loginCheck() {
-
-      if (!this.loginValidate()) {
-        return;
-      }
-
-      const url = "http://15.165.183.94/v1/user/login";
-
-      let data = {
-        "id": this.form.id,
-        "password": this.form.password
-      }
-
-      return this.$axios.post(url,data,{
-        withCredential : true
-      });
-    },
-    /* login modal method end */
-
-    /* item regit modal method start */
-    openItemModal() {
-      /*if (sessionStorage.getItem("access_token") == "" || sessionStorage.getItem("access_token") == null) {
-        alert("권한이 없습니다.");
-        return;
-      }*/
-      this.itemDialog = true
-    },
     showApi() {
       new window.daum.Postcode({
         oncomplete: (data) => {
@@ -680,7 +659,7 @@ export default {
       if (!this.validate())
         return;
 
-      const url = "http://15.165.183.94/v1/product-regist";
+      const url = "http://15.165.183.94/v1/as";
 
       const formData = new FormData();
       formData.append("name", this.asForm.name);
@@ -690,6 +669,7 @@ export default {
       formData.append('product_type', this.asForm.item.value);
       formData.append('market_type', this.asForm.purchasepath.value);
       formData.append('purchase_date', this.asForm.purchasedate+'T00:00:00Z');
+      formData.append('contents', this.asForm.contents);
       formData.append('file1', this.asForm.file1[0]);
       formData.append('file2', this.asForm.file2[0]);
       formData.append('file3', this.asForm.file3[0]);
@@ -715,7 +695,7 @@ export default {
       });
     },
     validate () {
-      return this.$refs.itemForm.validate();
+      return this.$refs.asForm.validate();
     },
     doLogout () {
       alert("로그아웃 되었습니다.");
@@ -723,10 +703,25 @@ export default {
       sessionStorage.clear();
       this.$router.push({ path: '/' });
     },
-    selectFile(file) {
+    selectFile1(file) {
       console.log(file)
-      this.asForm.file = file;
-      console.log(this.asForm.file)
+      this.asForm.file1 = file;
+    },
+    selectFile2(file) {
+      console.log(file)
+      this.asForm.file2 = file;
+    },
+    selectFile3(file) {
+      console.log(file)
+      this.asForm.file3 = file;
+    },
+    selectFile4(file) {
+      console.log(file)
+      this.asForm.file4 = file;
+    },
+    selectFile5(file) {
+      console.log(file)
+      this.asForm.file5 = file;
     },
     /* item regit modal method end */
 
