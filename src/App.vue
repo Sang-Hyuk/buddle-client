@@ -937,7 +937,7 @@ export default {
         return;
       }
 
-      const url = "http://52.79.192.123/v1/user/login";
+      const url = "http://15.165.183.94/v1/user/login";
 
       let data = {
         "id": this.form.id,
