@@ -20,7 +20,7 @@
             </v-col>
             <v-col cols="1">
               <v-card-text>
-                <p class="text-right font-weight-black" style="margin-top: 15px;">이름</p>
+                <p class="text-right font-weight-black">이름</p>
               </v-card-text>
             </v-col>
             <v-col cols="2" style="margin-top: 5px;">
@@ -34,7 +34,7 @@
             </v-col>
             <v-col cols="1">
               <v-card-text>
-                <p class="text-right font-weight-black" style="margin-top: 15px;">핸드폰번호</p>
+                <p class="text-right font-weight-black">핸드폰번호</p>
               </v-card-text>
             </v-col>
             <v-col cols="2" style="margin-top: 5px;">
@@ -45,7 +45,6 @@
                   color="purple darken-2"
                   label="-포함 입력하세요."
                   outlined
-                  readonly
                   dense
               ></v-text-field>
             </v-col>
@@ -75,7 +74,7 @@
               </v-col>
               <v-col cols="9" style="margin-top: 10px; padding: 0px;">
                 <v-text-field
-                    v-model="conditionForm.name"
+                    v-model="this.resName"
                     color="purple darken-2"
                     outlined
                     readonly
@@ -93,7 +92,7 @@
               </v-col>
               <v-col cols="9" style="margin-top: 10px; padding: 0px;">
                 <v-text-field
-                    v-model="conditionForm.phone"
+                    v-model="this.resPhone"
                     :maxlength="13"
                     color="purple darken-2"
                     outlined
@@ -112,7 +111,7 @@
               </v-col>
               <v-col cols="9" style="margin-top: 10px; padding: 0px;">
                 <v-text-field
-                    v-model="conditionForm.phone"
+                    v-model="this.resProductType"
                     :maxlength="13"
                     color="purple darken-2"
                     outlined
@@ -131,7 +130,7 @@
               </v-col>
               <v-col cols="9" style="margin-top: 10px; padding: 0px;">
                 <v-text-field
-                    v-model="conditionForm.phone"
+                    v-model="this.resMarketType"
                     :maxlength="13"
                     color="purple darken-2"
                     outlined
@@ -150,7 +149,7 @@
               </v-col>
               <v-col cols="9" style="margin-top: 10px; padding: 0px;">
                 <v-text-field
-                    v-model="conditionForm.phone"
+                    v-model="this.resPurchaseDate"
                     :maxlength="13"
                     color="purple darken-2"
                     outlined
@@ -169,7 +168,7 @@
               </v-col>
               <v-col cols="9" style="margin-top: 10px; padding: 0px;">
                 <v-text-field
-                    v-model="conditionForm.phone"
+                    v-model="this.resSerialNo"
                     :maxlength="13"
                     color="purple darken-2"
                     outlined
@@ -223,10 +222,14 @@ export default {
     desserts: [],
     conditionForm: {
       name: '',
-      phone: '',
-      serial_no: '',
-      only_auth_product: false,
+      phone: ''
     },
+    resName: '',
+    resPhone: '',
+    resProductType: '',
+    resMarketType:'',
+    resPurchaseDate: '',
+    resSerialNo: '',
     conditionRules: {
       name_rule: [val => (val || '').length > 0 || '이름을 입력하세요.'],
       phone_rule: [
@@ -236,96 +239,30 @@ export default {
     file: '',
   }),
   methods: {
-    checkNumber(){
-      return this.conditionForm.phone = this.conditionForm.phone.replace(/[^0-9]/g, '');
-    },
     doSearch() {
 
-      let token = sessionStorage.getItem("access_token");
-
-      if (token == null) {
-        alert("로그인을 먼저 해주세요.");
-        return;
-      }
-
-      const url = "http://15.165.183.94/v1/product/manage";
+      const url = "http://15.165.183.94/v1/product-regist";
 
       const params = new URLSearchParams();
 
       params.append("name", this.conditionForm.name);
       params.append("phone", this.conditionForm.phone);
-      params.append("serial_no", this.conditionForm.serial_no);
-      params.append("only_auth_product", this.conditionForm.only_auth_product);
 
       this.$axios.get(url,
-          {params:params,
-            headers: {
-              "access-token" : "Bearer "+ token
-            }
-          }
+          {params:params}
       )
       .then((res)=> {
         console.log(res.data.data)
         this.desserts = res.data.data;
+        let rows = '';
+        rows = res.data.data;
+        this.resName = rows.name;
+        this.resPhone = rows.phone;
+        this.resProductType = rows.product_type;
+        this.resMarketType = rows.market_type;
+        this.resPurchaseDate = rows.purchase_date;
+        this.resSerialNo = rows.serial_no;
       })
-    },
-    onButtonClick(seq) {
-
-      if (seq.product_regist_seq == '' || seq.product_regist_seq == null || seq.product_regist_seq == undefined) {
-        alert("정품인증 상품이 아닙니다.");
-        return;
-      }
-
-      let token = sessionStorage.getItem("access_token");
-      const url = "http://15.165.183.94/v1/product/receipt?product_regist_seq=" + seq.product_regist_seq + "&access-token="+token;
-      const link = document.createElement('a');
-
-      let fileName = seq.filename;
-      if (fileName) {
-        const [ fileNameMatch ] = fileName.split(';').filter(str => str.includes('filename'));
-        if (fileNameMatch)
-          [ , fileName ] = fileNameMatch.split('=');
-      }
-      link.href = url;
-      link.setAttribute('download', `${fileName}`);
-      link.style.cssText = 'display:none';
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    },
-    selectFile(file) {
-      console.log(file)
-      this.file = file;
-      console.log(this.file)
-    },
-    uploadFile() {
-
-      window.$('.loading').show();
-      const url = "http://15.165.183.94/v1/product";
-
-      const formData = new FormData();
-      formData.append('csv_file', this.file[0]);
-
-      let token = sessionStorage.getItem("access_token");
-
-      const config = {
-        method: 'post',
-        url: url,
-        data: formData,
-        headers: {
-          "Content-Type": 'multipart/form-data',
-          "access-token" : "Bearer "+ token,
-        }
-      }
-      this.$axios.request(config)
-          .then(res => {
-            console.log(res.data);
-            window.$('.loading').hide();
-            alert("업로드 성공 : " + res.data.success+"건, " + "업로드 실패 : " + res.data.failure + "건");
-          }).catch(err => {
-        window.$('.loading').hide();
-        console.log(err.response);
-      });
     }
   },
 }
