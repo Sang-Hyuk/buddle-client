@@ -1,680 +1,312 @@
 <template>
-  <v-container fluid>
-    <v-container class="mt-4">
+  <v-container fluid style="min-width: 100%;">
+    <!--  관리화면  -->
+    <v-container class="mt-4" style="min-width: 90%;">
+
       <v-row class="mb-12" justify="left">
         <v-col lg="12">
-          <p class="text-left" style="font-size: 32px; font-weight: bold; border-bottom: 1px solid; border-color: darkgray;">A/S 신청
-            <span style="font-size: 18px;">아래 신청서를 작성해 주세요.</span>
+          <p class="text-left" style="font-size: 32px; font-weight: bold; border-bottom: 1px solid; border-color: darkgray; margin-bottom: 0px;">정품등록확인
+            <span style="font-size: 18px;">정품등록을 확인하세요.</span>
           </p>
         </v-col>
       </v-row>
-      <v-row class="mb-12" justify="center">
-        <v-form
-            ref="asForm"
-            @submit.prevent="submit"
-        >
-          <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
+
+      <v-row class="mb-12" justify="left">
+        <v-container fluid>
+          <v-row class="md-12" style="border-bottom: 1px solid; border-color: darkgray; width: 99.8%; margin-left: 0.2%;">
+            <v-col cols="1" >
+            </v-col>
+            <v-col cols="1">
+            </v-col>
+            <v-col cols="1">
               <v-card-text>
-                <p class="text-left font-weight-black">이름</p>
+                <p class="text-right font-weight-black" style="margin-top: 15px;">이름</p>
               </v-card-text>
             </v-col>
-            <v-col cols="9">
+            <v-col cols="2" style="margin-top: 5px;">
               <v-text-field
-                  v-model="asForm.name"
-                  :rules="itemrules.name_rule"
+                  v-model="conditionForm.name"
+                  :rules="conditionRules.name_rule"
                   color="purple darken-2"
-                  label="이름을 입력하세요."
-                  dense
                   outlined
-                  required
+                  dense
               ></v-text-field>
             </v-col>
-          </v-row>
-          <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
+            <v-col cols="1">
               <v-card-text>
-                <p class="text-left font-weight-black">핸드폰</p>
+                <p class="text-right font-weight-black" style="margin-top: 15px;">핸드폰번호</p>
               </v-card-text>
             </v-col>
-            <v-col cols="3">
+            <v-col cols="2" style="margin-top: 5px;">
               <v-text-field
-                  v-model="asForm.phone1"
-                  :rules="itemrules.phone1_rule"
+                  v-model="conditionForm.phone"
+                  :rules="conditionRules.phone_rule"
+                  :maxlength="13"
                   color="purple darken-2"
-                  label=""
-                  dense
+                  label="-포함 입력하세요."
                   outlined
-                  required
+                  readonly
+                  dense
               ></v-text-field>
             </v-col>
-            <v-col cols="3">
-              <v-text-field
-                  v-model="asForm.phone2"
-                  :rules="itemrules.phone2_rule"
-                  color="purple darken-2"
-                  label=""
-                  dense
-                  outlined
-                  required
-              ></v-text-field>
-            </v-col>
-            <v-col cols="3">
-              <v-text-field
-                  v-model="asForm.phone3"
-                  :rules="itemrules.phone3_rule"
-                  color="purple darken-2"
-                  label=""
-                  dense
-                  outlined
-                  required
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row class="md-12" style="height: 65px;">
             <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">우편번호</p>
-              </v-card-text>
-            </v-col>
-            <v-col cols="5">
-              <v-text-field
-                  v-model="asForm.zipcode"
-                  :rules="itemrules.zipcode_rule"
-                  color="purple darken-2"
-                  label=""
-                  dense
-                  outlined
-                  required
-              ></v-text-field>
-            </v-col>
-            <v-col cols="4"
-                   class="text-center">
               <v-btn
                   depressed
                   color="primary"
                   width="100%"
-                  height="40px"
-                  @click="showApi"
+                  height="65%"
+                  @click="doSearch"
               >
-                우편번호 찾기
+                조회
               </v-btn>
             </v-col>
           </v-row>
-          <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">주소</p>
-              </v-card-text>
-            </v-col>
-            <v-col cols="9">
-              <v-text-field
-                  v-model="asForm.addr"
-                  :rules="itemrules.addr_rule"
-                  color="purple darken-2"
-                  label=""
-                  dense
-                  outlined
-                  required
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">주소상세</p>
-              </v-card-text>
-            </v-col>
-            <v-col cols="9">
-              <v-text-field
-                  v-model="asForm.addrdetail"
-                  :rules="itemrules.addrdetail_rule"
-                  color="purple darken-2"
-                  label=""
-                  dense
-                  outlined
-                  required
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">구매제품</p>
-              </v-card-text>
-            </v-col>
-            <v-col cols="9">
-              <v-combobox
-                  solo
-                  dense
-                  label="제품선택"
-                  v-model="asForm.item"
-                  :items="items"
-                  item-text="name"
-                  item-value="value"
-                  :rules="itemrules.item_rule"
-              >
-              </v-combobox>
-            </v-col>
-          </v-row>
-          <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">구매처</p>
-              </v-card-text>
-            </v-col>
-            <v-col cols="9">
-              <v-combobox
-                  solo
-                  dense
-                  label="구매처"
-                  v-model="asForm.purchasepath"
-                  :items="buypath"
-                  item-text="name"
-                  item-value="value"
-                  :rules="itemrules.purchasepath_rule"
-              >
-              </v-combobox>
-            </v-col>
-          </v-row>
-          <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">구매날짜</p>
-              </v-card-text>
-            </v-col>
-            <v-col cols="9">
-              <v-menu
-                  ref="menu"
-                  v-model="picker"
-                  :close-on-content-click="false"
-                  :return-value.sync="asForm.purchasedate"
-                  transition="scale-transition"
-                  offset-y
-                  min-width="auto"
-              >
-                <template v-slot:activator="{ on, attrs }">
-                  <v-text-field
-                      v-model="asForm.purchasedate"
-                      label="구매날짜"
-                      prepend-icon="mdi-calendar"
-                      :rules="itemrules.purchasepath_rule"
-                      readonly
-                      dense
-                      v-bind="attrs"
-                      v-on="on"
-                  ></v-text-field>
-                </template>
-                <v-date-picker
-                    v-model="asForm.purchasedate"
-                    no-title
-                    scrollable
-                >
-                  <v-spacer></v-spacer>
-                  <v-btn
-                      text
-                      color="primary"
-                      @click="picker = false"
-                  >
-                    Cancel
-                  </v-btn>
-                  <v-btn
-                      text
-                      color="primary"
-                      @click="$refs.menu.save(asForm.purchasedate)"
-                  >
-                    OK
-                  </v-btn>
-                </v-date-picker>
-              </v-menu>
-            </v-col>
-          </v-row>
-          <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">첨부파일1</p>
-              </v-card-text>
-            </v-col>
-            <v-col cols="9">
-              <template>
-                <v-file-input
-                    color="deep-purple accent-4"
-                    counter
-                    label="파일선택"
-                    multiple
-                    placeholder="Select your files"
-                    prepend-icon="mdi-paperclip"
-                    dense
+        </v-container>
+        <br>
+        <v-col col="12">
+          <v-container fluid>
+            <v-row class="md-12" style="border-bottom: 1px solid; border-color: darkgray;">
+              <v-col cols="1" style="padding: 0px;">
+              </v-col>
+              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">이름</p>
+                </v-card-text>
+              </v-col>
+              <v-col cols="9" style="margin-top: 10px; padding: 0px;">
+                <v-text-field
+                    v-model="conditionForm.name"
+                    color="purple darken-2"
                     outlined
-                    :show-size="1000"
-                    @change="selectFile1"
-                >
-                  <template v-slot:selection="{ index, text }">
-                    <v-chip
-                        v-if="index < 2"
-                        color="deep-purple accent-4"
-                        dark
-                        label
-                        small
-                    >
-                      {{ text }}
-                    </v-chip>
-
-                    <span
-                        v-else-if="index === 2"
-                        class="text-overline grey--text text--darken-3 mx-2"
-                    >
-                            +{{ asForm.file1.length - 2 }} File(s)
-                          </span>
-                  </template>
-                </v-file-input>
-              </template>
-            </v-col>
-          </v-row>
-          <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">첨부파일2</p>
-              </v-card-text>
-            </v-col>
-            <v-col cols="9">
-              <template>
-                <v-file-input
-                    color="deep-purple accent-4"
-                    counter
-                    label="파일선택"
-                    multiple
-                    placeholder="Select your files"
-                    prepend-icon="mdi-paperclip"
+                    readonly
                     dense
+                ></v-text-field>
+              </v-col>
+              <v-col cols="1" style="padding: 0px;">
+              </v-col>
+              <v-col cols="1" style="padding: 0px;">
+              </v-col>
+              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">핸드폰번호</p>
+                </v-card-text>
+              </v-col>
+              <v-col cols="9" style="margin-top: 10px; padding: 0px;">
+                <v-text-field
+                    v-model="conditionForm.phone"
+                    :maxlength="13"
+                    color="purple darken-2"
                     outlined
-                    :show-size="1000"
-                    @change="selectFile2"
-                >
-                  <template v-slot:selection="{ index, text }">
-                    <v-chip
-                        v-if="index < 2"
-                        color="deep-purple accent-4"
-                        dark
-                        label
-                        small
-                    >
-                      {{ text }}
-                    </v-chip>
-
-                    <span
-                        v-else-if="index === 2"
-                        class="text-overline grey--text text--darken-3 mx-2"
-                    >
-                            +{{ asForm.file2.length - 2 }} File(s)
-                    </span>
-                  </template>
-                </v-file-input>
-              </template>
-            </v-col>
-          </v-row>
-          <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">첨부파일3</p>
-              </v-card-text>
-            </v-col>
-            <v-col cols="9">
-              <template>
-                <v-file-input
-                    color="deep-purple accent-4"
-                    counter
-                    label="파일선택"
-                    multiple
-                    placeholder="Select your files"
-                    prepend-icon="mdi-paperclip"
+                    readonly
                     dense
+                ></v-text-field>
+              </v-col>
+              <v-col cols="1" style="padding: 0px;">
+              </v-col>
+              <v-col cols="1" style="padding: 0px;">
+              </v-col>
+              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">구매제품</p>
+                </v-card-text>
+              </v-col>
+              <v-col cols="9" style="margin-top: 10px; padding: 0px;">
+                <v-text-field
+                    v-model="conditionForm.phone"
+                    :maxlength="13"
+                    color="purple darken-2"
                     outlined
-                    :show-size="1000"
-                    @change="selectFile3"
-                >
-                  <template v-slot:selection="{ index, text }">
-                    <v-chip
-                        v-if="index < 2"
-                        color="deep-purple accent-4"
-                        dark
-                        label
-                        small
-                    >
-                      {{ text }}
-                    </v-chip>
-
-                    <span
-                        v-else-if="index === 2"
-                        class="text-overline grey--text text--darken-3 mx-2"
-                    >
-                            +{{ asForm.file3.length - 2 }} File(s)
-                          </span>
-                  </template>
-                </v-file-input>
-              </template>
-            </v-col>
-          </v-row>
-          <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">첨부파일4</p>
-              </v-card-text>
-            </v-col>
-            <v-col cols="9">
-              <template>
-                <v-file-input
-                    color="deep-purple accent-4"
-                    counter
-                    label="파일선택"
-                    multiple
-                    placeholder="Select your files"
-                    prepend-icon="mdi-paperclip"
+                    readonly
                     dense
+                ></v-text-field>
+              </v-col>
+              <v-col cols="1" style="padding: 0px;">
+              </v-col>
+              <v-col cols="1" style="padding: 0px;">
+              </v-col>
+              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">구매처</p>
+                </v-card-text>
+              </v-col>
+              <v-col cols="9" style="margin-top: 10px; padding: 0px;">
+                <v-text-field
+                    v-model="conditionForm.phone"
+                    :maxlength="13"
+                    color="purple darken-2"
                     outlined
-                    :show-size="1000"
-                    @change="selectFile4"
-                >
-                  <template v-slot:selection="{ index, text }">
-                    <v-chip
-                        v-if="index < 2"
-                        color="deep-purple accent-4"
-                        dark
-                        label
-                        small
-                    >
-                      {{ text }}
-                    </v-chip>
-
-                    <span
-                        v-else-if="index === 2"
-                        class="text-overline grey--text text--darken-3 mx-2"
-                    >
-                            +{{ asForm.file4.length - 2 }} File(s)
-                          </span>
-                  </template>
-                </v-file-input>
-              </template>
-            </v-col>
-          </v-row>
-          <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">첨부파일5</p>
-              </v-card-text>
-            </v-col>
-            <v-col cols="9">
-              <template>
-                <v-file-input
-                    color="deep-purple accent-4"
-                    counter
-                    label="파일선택"
-                    multiple
-                    placeholder="Select your files"
-                    prepend-icon="mdi-paperclip"
+                    readonly
                     dense
+                ></v-text-field>
+              </v-col>
+              <v-col cols="1" style="padding: 0px;">
+              </v-col>
+              <v-col cols="1" style="padding: 0px;">
+              </v-col>
+              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">구매날짜</p>
+                </v-card-text>
+              </v-col>
+              <v-col cols="9" style="margin-top: 10px; padding: 0px;">
+                <v-text-field
+                    v-model="conditionForm.phone"
+                    :maxlength="13"
+                    color="purple darken-2"
                     outlined
-                    :show-size="1000"
-                    @change="selectFile5"
-                >
-                  <template v-slot:selection="{ index, text }">
-                    <v-chip
-                        v-if="index < 2"
-                        color="deep-purple accent-4"
-                        dark
-                        label
-                        small
-                    >
-                      {{ text }}
-                    </v-chip>
-
-                    <span
-                        v-else-if="index === 2"
-                        class="text-overline grey--text text--darken-3 mx-2"
-                    >
-                            +{{ asForm.file5.length - 2 }} File(s)
-                          </span>
-                  </template>
-                </v-file-input>
-              </template>
-            </v-col>
-          </v-row>
-          <v-row class="md-12" style="height: 180px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">문의사항</p>
-              </v-card-text>
-            </v-col>
-            <v-col cols="9">
-              <v-textarea
-                  v-model="asForm.contents"
-                  solo
-                  name="input-7-4"
-                  label="문의사항"
-                  outlined
-              ></v-textarea>
-            </v-col>
-          </v-row>
-          <br>
-          <v-row class="md-12" style="height: 120px;">
-            <v-col cols="2"
-                   class="text-center"
-                   style="width: 120px !important; margin-top: 1%;">
-              <v-checkbox
-                  v-model="asForm.privacy"
-                  :rules="itemrules.privacy_rule"
-                  label="개인정보 수집 동의"
-                  dense
-                  required
-              ></v-checkbox>
-            </v-col>
-
-
-            <v-textarea
-                style="font-size: 13px; line-height: 1px;"
-                readonly
-                resize
-                rows="3"
-                name="input-7-1"
-                filled
-                value="* 제1조 (개인정보 수집에 대한 동의) : 버들(이하 회사)는 이용자들이 회사의 개인정보취급방침 또는 이용약관의 내용에 대하여 “동의”버튼 또는 “취소”버튼을 클릭할 수 있는 절차를 마련하여, “동의”버튼을 클릭하면 개인정보 수집에 대해 동의한 것으로 봅니다.
-* 제2조 (개인정보 수집항목) : 온라인 문의를 통한 상담을 위해 처리하는 개인정보 항목은 아래와 같습니다. 수집 항목 : 이름, 전화번호, 주소, 구매 관련 이력
-* 제3조 (개인정보의 이용목적) : 회사는 이용자의 사전 동의 없이는 이용자의 개인 정보를 공개하지 않으며, 원활한 고객상담, 각종 서비스의 제공을 위해 아래와 같이 개인정보를 수집하고 있습니다. 모든 정보는 상기 목적에 필요한 용도 이외로는 사용되지 않으며 수집 정보의 범위나 사용 목적, 용도가 변경될 시에는 반드시 사전 동의를 구할 것입니다. - 성명 제품 상담에 따른 본인 확인 - 이메일, 전화번호 제품상담 및 이벤트 관련 고지사항 전달, 새로운 서비스 및 신상품 정보 제공(DM, SMS, 이메일 등 이용) 이용자는 개인정보의 수집/이용에 대한 동의를 거부할 수 있습니다. 다만, 동의를 거부하는 경우 온라인 문의를 통한 상담은 불가하며 서비스 이용 및 혜택 제공에 제한을 받을 수 있습니다.
-* 제4조 (개인정보의 보유 및 이용기간) : 원칙적으로 개인정보 수집 및 이용 목적이 달성된 후에는 해당 정보를 사용하지 않습니다. 그리고 상법, 전자상거래 등에서의 소비자보호에 관한 법률 등 관계 법렵의 규정에 의하여 보존할 필요가 있는 경우 회사는 관계 법령에서 정한 일정한 기간 동안 정보를 보관합니다. 이 경우 회사는 보관하는 정보를 그 보관의 목적으로만 이용하며 보존기간은 아래와 같습니다. 계약 또는 청약철회 등에 관한 기록 : 5년(전자상거래등에서의 소비자보호에 관한 법률) 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년(전자상거래등에서의 소비자 보호에 관한 법률) 시용정보의 수집/처리 및 이용 등에 관한 기록 : 3년(신용정보의 이용 및 보호에 관한 법률) 회사는 귀중한 이용자의 개인정보를 안전하게 처리하며, 유출의 방지를 위하여 다음과 같은 방법을 통하여 개인정보를 파기합니다. 종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각을 통하여 파기합니다. 전자적 파일 형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다."
-            >
-            </v-textarea>
-          </v-row>
-          <v-row class="md-12">
-            <v-col cols="5">
-            </v-col>
-            <v-col cols="4">
-              <v-btn
-                  dark
-                  type="submit"
-                  width="50%"
-                  @click="doRegAfterService"
-              >
-                확인
-              </v-btn>
-            </v-col>
-          </v-row>
-        </v-form>
+                    readonly
+                    dense
+                ></v-text-field>
+              </v-col>
+              <v-col cols="1" style="padding: 0px;">
+              </v-col>
+              <v-col cols="1" style="padding: 0px;">
+              </v-col>
+              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">시리얼번호</p>
+                </v-card-text>
+              </v-col>
+              <v-col cols="9" style="margin-top: 10px; padding: 0px;">
+                <v-text-field
+                    v-model="conditionForm.phone"
+                    :maxlength="13"
+                    color="purple darken-2"
+                    outlined
+                    readonly
+                    dense
+                ></v-text-field>
+              </v-col>
+              <v-col cols="1">
+              </v-col>
+            </v-row>
+          </v-container>
+          <!--          <v-data-table :headers="headers" :items="desserts">
+                      <template v-slot:item="row">
+                        <tr>
+                          <td>{{row.item.serial_no}}</td>
+                          <td>{{row.item.product_regdate}}</td>
+                          <td>{{row.item.name}}</td>
+                          <td>{{row.item.phone}}</td>
+                          <td>{{row.item.addr}}</td>
+                          <td>{{row.item.addr_detail}}</td>
+                          <td>{{row.item.purchase_date}}</td>
+                          <td>{{row.item.product_regist_regdate}}</td>
+                          <td>
+                            <v-btn class="primary"  @click="onButtonClick(row.item)">
+                              다운로드
+                            </v-btn>
+                          </td>
+                        </tr>
+                      </template>
+                    </v-data-table>-->
+        </v-col>
       </v-row>
-
     </v-container>
   </v-container>
 </template>
 
 <script>
 export default {
-  name: 'App',
   data: () => ({
-    drawer: false,
-    gradient: 'rgba(0,0,0,.7), rgba(0,0,0,.7)',
-    product: [
-      {title:'자동 분유제조기', icon:'mdi-view-dashboard', to:'/product'},
+    headers: [
+      { text: '시리얼번호', value: 'serial_no', },
+      { text: '제품등록일자', value: 'product-regdate' },
+      { text: '고객명', value: 'name' },
+      { text: '핸드폰번호', value: 'phone' },
+      { text: '주소', value: 'addr' },
+      { text: '주소상세', value: 'addr_detail' },
+      { text: '구매일자', value: 'purchase_date' },
+      { text: '정품등록일자', value: 'product_regist_regdate' },
+      { text: '다운로드', value: 'product_regist_seq' }
     ],
-    ascenter: [
-      {title:'A/S 신청', icon:'mdi-view-dashboard', to:'/as'},
-      {title:'A/S 신청확인', icon:'mdi-view-dashboard', to:'/as-check'},
-    ],
-    user: [
-      {title:'로그인', icon:'mdi-view-dashboard', to:'openModal'},
-      {title:'정품등록', icon:'mdi-view-dashboard', to:'/product'},
-      {title:'제품등록', icon:'mdi-view-dashboard', to:'/product'},
-    ],
-    colors: ['deep-purple accent-4', 'error', 'teal darken-1'],
-    dialog: false,
-    itemDialog: false,
-    picker: false,
-    message: '',
-    number: '',
-    form: {
-      id: '',
-      password: '',
-      terms: false,
-    },
-    rules: {
-      id: [val => (val || '').length > 0 || '아이디를 입력하세요.'],
-      password: [val => (val || '').length > 0 || '패스워드를 입력하세요.'],
-    },
-    asForm: {
+    desserts: [],
+    conditionForm: {
       name: '',
-      phone1: '',
-      phone2: '',
-      phone3: '',
-      zipcode: '',
-      addr: '',
-      addrdetail: '',
-      item: '',
-      purchasepath: '',
-      purchasedate: '',
-      file1: '',
-      file2: '',
-      file3: '',
-      file4: '',
-      file5: '',
-      contents: '',
+      phone: '',
+      serial_no: '',
+      only_auth_product: false,
     },
-    itemrules: {
+    conditionRules: {
       name_rule: [val => (val || '').length > 0 || '이름을 입력하세요.'],
-      phone1_rule: [
-        val => !!val || '핸드폰 번호를 입력하세요.',
-        val => !/[^0-9]/.test(val) || '숫자만 입력 가능합니다.',
-        val => !(val && val.length > 3) || '3자리만 입력 가능합니다.',
-      ],
-      phone2_rule: [
-        val => !!val || '번호를 입력하세요.',
-        val => !/[^0-9]/.test(val) || '숫자만 입력 가능합니다.',
-        val => !(val && val.length > 4) || '4자리만 입력 가능합니다.',
-      ],
-      phone3_rule: [
-        val => !!val || '핸드폰 번호를 입력하세요.',
-        val => !/[^0-9]/.test(val) || '숫자만 입력 가능합니다.',
-        val => !(val && val.length > 4) || '4자리만 입력 가능합니다.',
-      ],
-      zipcode_rule: [
-        val => !!val || '우편번호를 입력하세요.',
-        val => !/[^0-9]/.test(val) || '숫자만 입력 가능합니다.',
-      ],
-      addr_rule: [val => (val || '').length > 0 || '주소를 입력하세요.'],
-      addrdetail_rule: [val => (val || '').length > 0 || '상세 주소를 입력하세요.'],
-      item_rule: [val => !!val || '구매제품을 선택하세요.'],
-      purchasepath_rule: [val => !!val || '구매처를 선택하세요.'],
-      file_rule: [val => (val || '').length > 0 || '파일을 등록하세요.'],
-      privacy_rule: [
-        val => !!val || '개인정보 동의를 체크하세요.'
+      phone_rule: [
+        val => !(val && val.length > 13) || '13자리만 입력 가능합니다.',
       ],
     },
-    items: [
-      { name: "버들맘마 분유제조기", value: 0}
-    ],
-    buypath: [
-      { name: "네이버", value:0 },
-      { name: "쿠팡", value:1 },
-      { name: "오프라인 매장", value:2 },
-      { name: "기타", value:3 },
-    ],
-    loginResponse: [
-    ],
-    show:false
+    file: '',
   }),
-  computed: {
-  },
-  return: {
-  },
   methods: {
-    /* login modal method star */
-    openModal() {
-      this.dialog = true
+    checkNumber(){
+      return this.conditionForm.phone = this.conditionForm.phone.replace(/[^0-9]/g, '');
     },
-    resetForm () {
-      this.form = {
-        id: '',
-        password: '',
-        terms: false,
-      };
-      this.$refs.form.reset()
-    },
-    submit () {
-      this.snackbar = true
-      this.resetForm()
-    },
-    showApi() {
-      new window.daum.Postcode({
-        oncomplete: (data) => {
-          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-          // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
-          // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-          let fullRoadAddr = data.roadAddress;
-          // 도로명 주소 변수
-          let extraRoadAddr = '';
-          // 도로명 조합형 주소 변수
-          // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-          // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-          if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-            extraRoadAddr += data.bname;
-          }
-          // 건물명이 있고, 공동주택일 경우 추가한다.
-          if(data.buildingName !== '' && data.apartment === 'Y'){
-            extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-          }
-          // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-          if(extraRoadAddr !== ''){
-            extraRoadAddr = ' (' + extraRoadAddr + ')';
-          }
-          // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
-          if(fullRoadAddr !== ''){
-            fullRoadAddr += extraRoadAddr;
-          }
-          // 우편번호와 주소 정보를 해당 필드에 넣는다.
-          this.asForm.zipcode = data.zonecode;
-          //5자리 새우편번호 사용
-          this.asForm.addr = fullRoadAddr;
-        } }).open(
-          this.$refs.embed
-      )
-    },
-    doRegAfterService() {
-      if (!this.validate())
-        return;
+    doSearch() {
 
-      const url = "http://15.165.183.94/v1/as";
+      let token = sessionStorage.getItem("access_token");
+
+      if (token == null) {
+        alert("로그인을 먼저 해주세요.");
+        return;
+      }
+
+      const url = "http://15.165.183.94/v1/product/manage";
+
+      const params = new URLSearchParams();
+
+      params.append("name", this.conditionForm.name);
+      params.append("phone", this.conditionForm.phone);
+      params.append("serial_no", this.conditionForm.serial_no);
+      params.append("only_auth_product", this.conditionForm.only_auth_product);
+
+      this.$axios.get(url,
+          {params:params,
+            headers: {
+              "access-token" : "Bearer "+ token
+            }
+          }
+      )
+          .then((res)=> {
+            console.log(res.data.data)
+            this.desserts = res.data.data;
+          })
+    },
+    onButtonClick(seq) {
+
+      if (seq.product_regist_seq == '' || seq.product_regist_seq == null || seq.product_regist_seq == undefined) {
+        alert("정품인증 상품이 아닙니다.");
+        return;
+      }
+
+      let token = sessionStorage.getItem("access_token");
+      const url = "http://15.165.183.94/v1/product/receipt?product_regist_seq=" + seq.product_regist_seq + "&access-token="+token;
+      const link = document.createElement('a');
+
+      let fileName = seq.filename;
+      if (fileName) {
+        const [ fileNameMatch ] = fileName.split(';').filter(str => str.includes('filename'));
+        if (fileNameMatch)
+          [ , fileName ] = fileNameMatch.split('=');
+      }
+      link.href = url;
+      link.setAttribute('download', `${fileName}`);
+      link.style.cssText = 'display:none';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    },
+    selectFile(file) {
+      console.log(file)
+      this.file = file;
+      console.log(this.file)
+    },
+    uploadFile() {
+
+      window.$('.loading').show();
+      const url = "http://15.165.183.94/v1/product";
 
       const formData = new FormData();
-      formData.append("name", this.asForm.name);
-      formData.append('phone', this.asForm.phone1 + '-' + this.asForm.phone2 + '-' + this.asForm.phone3);
-      formData.append('addr', this.asForm.addr);
-      formData.append('addr_detail', this.asForm.addrdetail);
-      formData.append('product_type', this.asForm.item.value);
-      formData.append('market_type', this.asForm.purchasepath.value);
-      formData.append('purchase_date', this.asForm.purchasedate+'T00:00:00Z');
-      formData.append('contents', this.asForm.contents);
-      formData.append('file1', this.asForm.file1[0]);
-      formData.append('file2', this.asForm.file2[0]);
-      formData.append('file3', this.asForm.file3[0]);
-      formData.append('file4', this.asForm.file4[0]);
-      formData.append('file5', this.asForm.file5[0]);
+      formData.append('csv_file', this.file[0]);
+
+      let token = sessionStorage.getItem("access_token");
 
       const config = {
         method: 'post',
@@ -682,58 +314,40 @@ export default {
         data: formData,
         headers: {
           "Content-Type": 'multipart/form-data',
+          "access-token" : "Bearer "+ token,
         }
       }
-
       this.$axios.request(config)
           .then(res => {
             console.log(res.data);
-            alert(res.data.message);
-            this.$router.push({ path: '/' });
+            window.$('.loading').hide();
+            alert("업로드 성공 : " + res.data.success+"건, " + "업로드 실패 : " + res.data.failure + "건");
           }).catch(err => {
+        window.$('.loading').hide();
         console.log(err.response);
       });
-    },
-    validate () {
-      return this.$refs.asForm.validate();
-    },
-    doLogout () {
-      alert("로그아웃 되었습니다.");
-      localStorage.clear();
-      sessionStorage.clear();
-      this.$router.push({ path: '/' });
-    },
-    selectFile1(file) {
-      console.log(file)
-      this.asForm.file1 = file;
-    },
-    selectFile2(file) {
-      console.log(file)
-      this.asForm.file2 = file;
-    },
-    selectFile3(file) {
-      console.log(file)
-      this.asForm.file3 = file;
-    },
-    selectFile4(file) {
-      console.log(file)
-      this.asForm.file4 = file;
-    },
-    selectFile5(file) {
-      console.log(file)
-      this.asForm.file5 = file;
-    },
-    /* item regit modal method end */
-
-    /* admin page start */
-    moveToAdminPage() {
-      if (sessionStorage.getItem("access_token") == "" || sessionStorage.getItem("access_token") == null) {
-        alert("권한이 없습니다.");
-        return;
-      }
-      this.$router.push({ path: '/admin' });
-    },
-    /* admin page ent */
+    }
   },
-};
+}
 </script>
+<style scoped>
+.loading{ /*화면 전체를 어둡게 합니다.*/
+  position: fixed;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  background: white; /*not in ie */
+  z-index: 1070;
+  opacity: 0.75;
+  filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000', endColorstr='#20000000');    /* ie */
+}
+.loading div{ /*로딩 이미지*/
+  position: fixed;
+  top:45%;
+  left:45%;
+  right: 30%;
+  opacity: 0.75;
+}
+</style>
+

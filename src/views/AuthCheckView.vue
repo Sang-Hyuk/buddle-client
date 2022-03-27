@@ -3,11 +3,18 @@
     <!--  관리화면  -->
     <v-container class="mt-4" style="min-width: 90%;">
 
+      <v-row class="mb-12" justify="left">
+        <v-col lg="12">
+          <p class="text-left" style="font-size: 32px; font-weight: bold; border-bottom: 1px solid; border-color: darkgray; margin-bottom: 0px;">정품등록확인
+            <span style="font-size: 18px;">정품등록을 확인하세요.</span>
+          </p>
+        </v-col>
+      </v-row>
 
       <v-row class="mb-12" justify="left">
         <v-container fluid>
-          <v-row class="md-12" style="border-bottom: 1px solid; border-color: darkgray;">
-            <v-col cols="1">
+          <v-row class="md-12" style="border-bottom: 1px solid; border-color: darkgray; width: 99.8%; margin-left: 0.2%;">
+            <v-col cols="1" >
             </v-col>
             <v-col cols="1">
             </v-col>
@@ -59,14 +66,14 @@
         <v-col col="12">
           <v-container fluid>
             <v-row class="md-12" style="border-bottom: 1px solid; border-color: darkgray;">
-              <v-col cols="1">
+              <v-col cols="1" style="padding: 0px;">
               </v-col>
-              <v-col cols="1" style="margin-top: 5px;">
-                <v-card-text>
+              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
                   <p class="text-center font-weight-black" style="margin-top: 15px;">이름</p>
                 </v-card-text>
               </v-col>
-              <v-col cols="9" style="margin-top: 10px;">
+              <v-col cols="9" style="margin-top: 10px; padding: 0px;">
                 <v-text-field
                     v-model="conditionForm.name"
                     color="purple darken-2"
@@ -75,16 +82,16 @@
                     dense
                 ></v-text-field>
               </v-col>
-              <v-col cols="1">
+              <v-col cols="1" style="padding: 0px;">
               </v-col>
-              <v-col cols="1">
+              <v-col cols="1" style="padding: 0px;">
               </v-col>
-              <v-col cols="1" style="margin-top: 5px;">
-                <v-card-text>
+              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
                   <p class="text-center font-weight-black" style="margin-top: 15px;">핸드폰번호</p>
                 </v-card-text>
               </v-col>
-              <v-col cols="9" style="margin-top: 10px;">
+              <v-col cols="9" style="margin-top: 10px; padding: 0px;">
                 <v-text-field
                     v-model="conditionForm.phone"
                     :maxlength="13"
@@ -94,16 +101,16 @@
                     dense
                 ></v-text-field>
               </v-col>
-              <v-col cols="1">
+              <v-col cols="1" style="padding: 0px;">
               </v-col>
-              <v-col cols="1">
+              <v-col cols="1" style="padding: 0px;">
               </v-col>
-              <v-col cols="1" style="margin-top: 5px;">
-                <v-card-text>
+              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
                   <p class="text-center font-weight-black" style="margin-top: 15px;">구매제품</p>
                 </v-card-text>
               </v-col>
-              <v-col cols="9" style="margin-top: 10px;">
+              <v-col cols="9" style="margin-top: 10px; padding: 0px;">
                 <v-text-field
                     v-model="conditionForm.phone"
                     :maxlength="13"
@@ -113,16 +120,16 @@
                     dense
                 ></v-text-field>
               </v-col>
-              <v-col cols="1">
+              <v-col cols="1" style="padding: 0px;">
               </v-col>
-              <v-col cols="1">
+              <v-col cols="1" style="padding: 0px;">
               </v-col>
-              <v-col cols="1" style="margin-top: 5px;">
-                <v-card-text>
+              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
                   <p class="text-center font-weight-black" style="margin-top: 15px;">구매처</p>
                 </v-card-text>
               </v-col>
-              <v-col cols="9" style="margin-top: 10px;">
+              <v-col cols="9" style="margin-top: 10px; padding: 0px;">
                 <v-text-field
                     v-model="conditionForm.phone"
                     :maxlength="13"
@@ -132,16 +139,16 @@
                     dense
                 ></v-text-field>
               </v-col>
-              <v-col cols="1">
+              <v-col cols="1" style="padding: 0px;">
               </v-col>
-              <v-col cols="1">
+              <v-col cols="1" style="padding: 0px;">
               </v-col>
-              <v-col cols="1" style="margin-top: 5px;">
-                <v-card-text>
+              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
                   <p class="text-center font-weight-black" style="margin-top: 15px;">구매날짜</p>
                 </v-card-text>
               </v-col>
-              <v-col cols="9" style="margin-top: 10px;">
+              <v-col cols="9" style="margin-top: 10px; padding: 0px;">
                 <v-text-field
                     v-model="conditionForm.phone"
                     :maxlength="13"
@@ -151,16 +158,16 @@
                     dense
                 ></v-text-field>
               </v-col>
-              <v-col cols="1">
+              <v-col cols="1" style="padding: 0px;">
               </v-col>
-              <v-col cols="1">
+              <v-col cols="1" style="padding: 0px;">
               </v-col>
-              <v-col cols="1" style="margin-top: 5px;">
-                <v-card-text>
+              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
                   <p class="text-center font-weight-black" style="margin-top: 15px;">시리얼번호</p>
                 </v-card-text>
               </v-col>
-              <v-col cols="9" style="margin-top: 10px;">
+              <v-col cols="9" style="margin-top: 10px; padding: 0px;">
                 <v-text-field
                     v-model="conditionForm.phone"
                     :maxlength="13"
