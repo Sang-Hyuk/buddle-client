@@ -2,7 +2,7 @@
   <v-container fluid style="padding: 0px;">
     <v-card outlined>
       <v-row>
-        <v-col>
+        <v-col style="padding: 0px;">
           <v-card>
             <v-carousel
                 cycle
