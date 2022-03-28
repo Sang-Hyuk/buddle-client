@@ -744,40 +744,40 @@
                 <p>
                   <strong style="font-family: 'Nanum Gothic'; font-size: 14px;">CALL CENTER</strong>
                 </p>
-                <ul style="font-family: 'Nanum Gothic'; font-size: 12px;">
-                  <li>고객센터 : <strong>1566-4489</strong> </li>
-                  <li>상담시간 : AM 10:00 ~ PM 06:00 </li>
-                  <li>카톡상담 : 버들 고객센터 </li>
-                </ul>
+                <span style="font-family: 'Nanum Gothic'; font-size: 12px;">
+                  <p style="margin-bottom: 0px;">고객센터 : <strong>1566-4489</strong> </p>
+                  <p style="margin-bottom: 0px;">상담시간 : AM 10:00 ~ PM 06:00 </p>
+                  <p style="margin-bottom: 0px;">카톡상담 : 버들 고객센터 </p>
+                </span>
               </v-col>
               <v-col>
                 <p>
                   <strong style="font-family: 'Nanum Gothic'; font-size: 14px;">INFORMATION</strong>
                 </p>
-                <ul style="font-family: 'Nanum Gothic'; font-size: 12px;">
-                  <li>상호명 : <strong>주식회사 버들</strong> </li>
-                  <li>대표자명 : 류상완 </li>
-                  <li>주소 : 경기도 광명시 일직로43 C동 2108 </li>
-                  <li>대표전화 : 1566-4489</li>
-                </ul>
+                <span style="font-family: 'Nanum Gothic'; font-size: 12px;">
+                  <p style="margin-bottom: 0px;">상호명 : <strong>주식회사 버들</strong> </p>
+                  <p style="margin-bottom: 0px;">대표자명 : 류상완 </p>
+                  <p style="margin-bottom: 0px;">주소 : 경기도 광명시 일직로43 C동 2108 </p>
+                  <p style="margin-bottom: 0px;">대표전화 : 1566-4489</p>
+                </span>
               </v-col>
               <v-col>
                 <p>
                   <strong style="font-family: 'Nanum Gothic'; font-size: 14px;">LICENCE</strong>
                 </p>
-                <ul style="font-family: 'Nanum Gothic'; font-size: 12px;">
-                  <li>사업자등록번호 : 623-87-02137 </li>
-                  <li>통신판매신고번호 : 제 2021-경기광명-0530호 </li>
-                </ul>
+                <span style="font-family: 'Nanum Gothic'; font-size: 12px;">
+                  <p style="margin-bottom: 0px;">사업자등록번호 : 623-87-02137 </p>
+                  <p style="margin-bottom: 0px;">통신판매신고번호 : 제 2021-경기광명-0530호 </p>
+                </span>
               </v-col>
               <v-col>
                 <p>
                   <strong style="font-family: 'Nanum Gothic'; font-size: 14px;">WEB MASTER</strong>
                 </p>
-                <ul style="font-family: 'Nanum Gothic'; font-size: 12px;">
-                  <li>e-mail : <strong>buddlemanma@naver.com</strong> </li>
-                  <li>개인정보보호정책 책임자 : 류상완 </li>
-                </ul>
+                <span style="font-family: 'Nanum Gothic'; font-size: 12px;">
+                  <p style="margin-bottom: 0px;">e-mail : <strong>buddlemanma@naver.com</strong> </p>
+                  <p style="margin-bottom: 0px;">개인정보보호정책 책임자 : 류상완 </p>
+                </span>
               </v-col>
             </v-row>
             <p class="text-no-wrap" style="margin-bottom: 1px; color:red; font-size: 13px;">모든 컨텐츠의 무단복제 및 재판매를 금지합니다.</p>
