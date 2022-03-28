@@ -98,6 +98,7 @@
                 v-on="on"
                 class="d-none d-lg-flex d-xl-flex d-none"
                 elevation="0"
+                style="font-family: 'Noto Sans Adlam'; font-size: 16px;"
             >
               버들소개
             </v-btn>
@@ -111,7 +112,7 @@
                 elevation="0"
                 color="white"
             >
-              <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="font-size: 0.875rem; color: black; margin-left: -15px;">
+              <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="font-family: 'Noto Sans Adlam'; font-size: 14px; color: black; margin-left: -15px;">
               </v-btn>
             </v-list-item>
           </v-list>
@@ -124,6 +125,7 @@
                 v-on="on"
                 class="d-none d-lg-flex d-xl-flex d-none"
                 elevation="0"
+                style="font-family: 'Noto Sans Adlam'; font-size: 16px;"
             >
               제품
             </v-btn>
@@ -137,7 +139,7 @@
                 elevation="0"
                 color="white"
             >
-              <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="font-size: 0.875rem; color: black; margin-left: -15px;">
+              <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="color: black; margin-left: -15px; font-family: 'Noto Sans Adlam'; font-size: 14px;">
               </v-btn>
             </v-list-item>
           </v-list>
@@ -150,6 +152,7 @@
                 v-on="on"
                 class="d-none d-lg-flex d-xl-flex d-none"
                 elevation="0"
+                style="font-family: 'Noto Sans Adlam'; font-size: 16px;"
             >
               고객서비스
             </v-btn>
@@ -163,7 +166,7 @@
                 elevation="0"
                 color="white"
             >
-              <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="font-size: 0.875rem; color: black; margin-left: -15px;">
+              <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="font-family: 'Noto Sans Adlam'; font-size: 14px; color: black; margin-left: -15px;">
               </v-btn>
             </v-list-item>
           </v-list>
@@ -176,6 +179,7 @@
                 v-on="on"
                 class="d-none d-lg-flex d-xl-flex d-none"
                 elevation="0"
+                style="font-family: 'Noto Sans Adlam'; font-size: 16px;"
             >
               정품등록
             </v-btn>
@@ -185,13 +189,13 @@
             <v-btn
                 text
                 @click="openItemModal"
-
+                style="font-family: 'Noto Sans Adlam'; font-size: 14px;"
             >
               <span class="mr-2">정품등록</span>
             </v-btn>
           </v-list>
           <v-list>
-            <router-link :to="{ name: 'authcheck'}" style="text-decoration: none;"> <v-btn text>정품등록확인</v-btn> </router-link>
+            <router-link :to="{ name: 'authcheck'}" style="text-decoration: none;"> <v-btn text style="font-family: 'Noto Sans Adlam'; font-size: 14px;">정품등록확인</v-btn> </router-link>
           </v-list>
         </v-menu>
 
@@ -203,6 +207,7 @@
                 v-on="on"
                 class="d-none d-lg-flex d-xl-flex d-none"
                 elevation="0"
+                style="font-family: 'Noto Sans Adlam'; font-size: 16px;"
             >
               커뮤니티
             </v-btn>
@@ -214,8 +219,9 @@
                 :key="item.title"
                 :to="item.to"
                 elevation="0"
+                color="white"
             >
-              <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="font-size: 0.875rem; color: black; margin-left: -15px;">
+              <v-btn class="d-none d-lg-flex d-xl-flex d-none" text v-text="item.title" style="font-family: 'Noto Sans Adlam'; font-size: 14px; color: black; margin-left: -15px;">
               </v-btn>
             </v-list-item>
           </v-list>
@@ -235,6 +241,7 @@
             <v-btn
                 text
                 @click="openModal"
+                style="font-family: 'Noto Sans Adlam'; font-size: 14px;"
             >
               <span class="mr-2">로그인</span>
             </v-btn>
@@ -244,6 +251,7 @@
                 text
                 link
                 @click="moveToAdminPage"
+                style="font-family: 'Noto Sans Adlam'; font-size: 14px;"
             >
               <span class="mr-2">관리자페이지</span>
             </v-btn>
@@ -252,6 +260,7 @@
             <v-btn
                 text
                 @click="doLogout"
+                style="font-family: 'Noto Sans Adlam'; font-size: 14px;"
             >
               <span class="mr-2">로그아웃</span>
             </v-btn>
@@ -728,14 +737,14 @@
     <v-main>
       <v-container fluid>
         <router-view/>
-        <v-footer class="mt-10">
+        <v-footer class="mt-10" style="background-color: white;">
           <v-container>
             <v-row class="mb-12" justify="left" style="margin-bottom:0px !important;">
               <v-col>
                 <p>
-                  <strong>CALL CENTER</strong>
+                  <strong style="font-family: 'Nanum Gothic'; font-size: 14px;">CALL CENTER</strong>
                 </p>
-                <ul style="font-size: 13px;">
+                <ul style="font-family: 'Nanum Gothic'; font-size: 12px;">
                   <li>고객센터 : <strong>1566-4489</strong> </li>
                   <li>상담시간 : AM 10:00 ~ PM 06:00 </li>
                   <li>카톡상담 : 버들 고객센터 </li>
@@ -743,9 +752,9 @@
               </v-col>
               <v-col>
                 <p>
-                  <strong>INFORMATION</strong>
+                  <strong style="font-family: 'Nanum Gothic'; font-size: 14px;">INFORMATION</strong>
                 </p>
-                <ul style="font-size: 13px;">
+                <ul style="font-family: 'Nanum Gothic'; font-size: 12px;">
                   <li>상호명 : <strong>주식회사 버들</strong> </li>
                   <li>대표자명 : 류상완 </li>
                   <li>주소 : 경기도 광명시 일직로43 C동 2108 </li>
@@ -754,18 +763,18 @@
               </v-col>
               <v-col>
                 <p>
-                  <strong>LICENCE</strong>
+                  <strong style="font-family: 'Nanum Gothic'; font-size: 14px;">LICENCE</strong>
                 </p>
-                <ul style="font-size: 13px;">
+                <ul style="font-family: 'Nanum Gothic'; font-size: 12px;">
                   <li>사업자등록번호 : 623-87-02137 </li>
                   <li>통신판매신고번호 : 제 2021-경기광명-0530호 </li>
                 </ul>
               </v-col>
               <v-col>
                 <p>
-                  <strong>WEB MASTER</strong>
+                  <strong style="font-family: 'Nanum Gothic'; font-size: 14px;">WEB MASTER</strong>
                 </p>
-                <ul style="font-size: 13px;">
+                <ul style="font-family: 'Nanum Gothic'; font-size: 12px;">
                   <li>e-mail : <strong>buddlemanma@naver.com</strong> </li>
                   <li>개인정보보호정책 책임자 : 류상완 </li>
                 </ul>

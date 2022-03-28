@@ -3,6 +3,13 @@
     <!--  관리화면  -->
     <v-container class="mt-4" style="min-width: 90%;">
 
+      <v-row class="mb-12" justify="left">
+        <v-col lg="12">
+          <p class="text-left" style="font-size: 32px; font-weight: bold; border-bottom: 1px solid; border-color: darkgray; margin-bottom: 0px;">관리자 페이지
+            <span style="font-size: 18px;">제품등록 및 조회가 가능합니다.</span>
+          </p>
+        </v-col>
+      </v-row>
       <v-row class="mb-12" style="margin-bottom: 0px !important;">
         <v-row class="md-12">
           <v-col cols="1">

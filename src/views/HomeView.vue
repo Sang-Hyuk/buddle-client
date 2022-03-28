@@ -7,7 +7,7 @@
             <v-carousel
                 cycle
                 hide-delimiters
-                height="460"
+                height="750"
                 width="100%"
             >
               <v-carousel-item

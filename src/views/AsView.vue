@@ -1,5 +1,28 @@
 <template>
-  <v-container fluid>
+  <v-container fluid style="padding: 0px;">
+    <v-card outlined>
+      <v-row>
+        <v-col style="padding: 0px;">
+          <v-card>
+            <v-carousel
+                cycle
+                hide-delimiters
+                height="460"
+                width="100%"
+            >
+              <v-carousel-item
+                  v-for="(item,i) in imgs"
+                  :key="i"
+                  :src="item.src"
+                  reverse-transition="fade-transition"
+                  transition="fade-transition"
+              ></v-carousel-item>
+            </v-carousel>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-card>
+
     <v-container class="mt-4">
       <v-row class="mb-12" justify="left">
         <v-col lg="12">
@@ -523,6 +546,11 @@
 </template>
 
 <script>
+
+import mainImg1 from "@/assets/main_metapo01.png";
+import mainImg2 from "@/assets/main_metapo02.png";
+import mainImg3 from "@/assets/main_metapo03.png";
+
 export default {
   name: 'App',
   data: () => ({
@@ -539,6 +567,17 @@ export default {
       {title:'로그인', icon:'mdi-view-dashboard', to:'openModal'},
       {title:'정품등록', icon:'mdi-view-dashboard', to:'/product'},
       {title:'제품등록', icon:'mdi-view-dashboard', to:'/product'},
+    ],
+    imgs: [
+      {
+        src: mainImg1,
+      },
+      {
+        src: mainImg2,
+      },
+      {
+        src: mainImg3,
+      },
     ],
     colors: ['deep-purple accent-4', 'error', 'teal darken-1'],
     dialog: false,
@@ -618,6 +657,15 @@ export default {
     show:false
   }),
   computed: {
+    carouselHeight () {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs": return 100
+        case "sm": return 200
+        case "md": return 300
+        case "xl": return 400
+        default : return 500
+      }
+    }
   },
   return: {
   },
