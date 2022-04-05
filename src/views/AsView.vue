@@ -756,7 +756,7 @@ export default {
           .then(res => {
             console.log(res.data);
             alert(res.data.message);
-            this.$router.push({ path: '/' });
+            this.$router.push({ path: '/as' });
           }).catch(err => {
         console.log(err.response);
       });
