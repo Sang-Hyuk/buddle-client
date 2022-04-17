@@ -35,17 +35,13 @@
 
       <v-row class="mb-12" justify="left">
         <v-container fluid>
-          <v-row class="md-12" style="border-bottom: 1px solid; border-color: darkgray; width: 99.8%; margin-left: 0.2%;">
-            <v-col cols="1" >
-            </v-col>
-            <v-col cols="1">
-            </v-col>
-            <v-col cols="1">
-              <v-card-text>
-                <p class="text-right font-weight-black">이름</p>
+          <v-row class="md-12">
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">이름</p>
               </v-card-text>
             </v-col>
-            <v-col cols="2" style="margin-top: 5px;">
+            <v-col cols="9" style="margin-top: 5px;">
               <v-text-field
                   v-model="conditionForm.name"
                   :rules="conditionRules.name_rule"
@@ -54,12 +50,14 @@
                   dense
               ></v-text-field>
             </v-col>
-            <v-col cols="1">
-              <v-card-text>
-                <p class="text-right font-weight-black">핸드폰번호</p>
+          </v-row>
+          <v-row class="md-12" style="border-bottom: 1px solid; border-color: darkgray; width: 99.8%; margin-left: 0.2%;">
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">핸드폰번호</p>
               </v-card-text>
             </v-col>
-            <v-col cols="2" style="margin-top: 5px;">
+            <v-col cols="7" style="margin-top: 5px;">
               <v-text-field
                   v-model="conditionForm.phone"
                   :rules="conditionRules.phone_rule"
@@ -86,10 +84,8 @@
         <br>
         <v-col col="12">
           <v-container fluid>
-            <v-row class="md-12" style="border-bottom: 1px solid; border-color: darkgray;">
-              <v-col cols="1" style="padding: 0px;">
-              </v-col>
-              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+            <v-row class="md-12">
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
                 <v-card-text style="padding: 0px;">
                   <p class="text-center font-weight-black" style="margin-top: 15px;">이름</p>
                 </v-card-text>
@@ -103,11 +99,9 @@
                     dense
                 ></v-text-field>
               </v-col>
-              <v-col cols="1" style="padding: 0px;">
-              </v-col>
-              <v-col cols="1" style="padding: 0px;">
-              </v-col>
-              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+              </v-row>
+            <v-row class="md-12">
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
                 <v-card-text style="padding: 0px;">
                   <p class="text-center font-weight-black" style="margin-top: 15px;">핸드폰번호</p>
                 </v-card-text>
@@ -122,11 +116,9 @@
                     dense
                 ></v-text-field>
               </v-col>
-              <v-col cols="1" style="padding: 0px;">
-              </v-col>
-              <v-col cols="1" style="padding: 0px;">
-              </v-col>
-              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+            </v-row>
+            <v-row class="md-12">
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
                 <v-card-text style="padding: 0px;">
                   <p class="text-center font-weight-black" style="margin-top: 15px;">이메일</p>
                 </v-card-text>
@@ -141,11 +133,9 @@
                     dense
                 ></v-text-field>
               </v-col>
-              <v-col cols="1" style="padding: 0px;">
-              </v-col>
-              <v-col cols="1" style="padding: 0px;">
-              </v-col>
-              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+            </v-row>
+            <v-row class="md-12">
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
                 <v-card-text style="padding: 0px;">
                   <p class="text-center font-weight-black" style="margin-top: 15px;">구매제품</p>
                 </v-card-text>
@@ -160,11 +150,9 @@
                     dense
                 ></v-text-field>
               </v-col>
-              <v-col cols="1" style="padding: 0px;">
-              </v-col>
-              <v-col cols="1" style="padding: 0px;">
-              </v-col>
-              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+            </v-row>
+            <v-row class="md-12">
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
                 <v-card-text style="padding: 0px;">
                   <p class="text-center font-weight-black" style="margin-top: 15px;">구매처</p>
                 </v-card-text>
@@ -179,11 +167,9 @@
                     dense
                 ></v-text-field>
               </v-col>
-              <v-col cols="1" style="padding: 0px;">
-              </v-col>
-              <v-col cols="1" style="padding: 0px;">
-              </v-col>
-              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+            </v-row>
+            <v-row class="md-12">
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
                 <v-card-text style="padding: 0px;">
                   <p class="text-center font-weight-black" style="margin-top: 15px;">구매날짜</p>
                 </v-card-text>
@@ -198,11 +184,9 @@
                     dense
                 ></v-text-field>
               </v-col>
-              <v-col cols="1" style="padding: 0px;">
-              </v-col>
-              <v-col cols="1" style="padding: 0px;">
-              </v-col>
-              <v-col cols="1" style="margin-top: 5px; padding: 0px;">
+            </v-row>
+            <v-row class="md-12">
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
                 <v-card-text style="padding: 0px;">
                   <p class="text-center font-weight-black" style="margin-top: 15px;">문의사항</p>
                 </v-card-text>

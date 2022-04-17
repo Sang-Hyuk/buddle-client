@@ -38,9 +38,9 @@
         >
           <v-container fluid>
             <v-row class="md-12" style="height: 65px;">
-              <v-col cols="2">
-                <v-card-text>
-                  <p class="text-left font-weight-black">이름</p>
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">이름</p>
                 </v-card-text>
               </v-col>
               <v-col cols="9">
@@ -56,9 +56,9 @@
               </v-col>
             </v-row>
             <v-row class="md-12" style="height: 65px;">
-              <v-col cols="2">
-                <v-card-text>
-                  <p class="text-left font-weight-black">핸드폰</p>
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">핸드폰</p>
                 </v-card-text>
               </v-col>
               <v-col cols="3">
@@ -96,9 +96,9 @@
               </v-col>
             </v-row>
             <v-row class="md-12" style="height: 65px;">
-              <v-col cols="2">
-                <v-card-text>
-                  <p class="text-left font-weight-black">우편번호</p>
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">우편번호</p>
                 </v-card-text>
               </v-col>
               <v-col cols="5">
@@ -126,9 +126,9 @@
               </v-col>
             </v-row>
             <v-row class="md-12" style="height: 65px;">
-              <v-col cols="2">
-                <v-card-text>
-                  <p class="text-left font-weight-black">주소</p>
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">주소</p>
                 </v-card-text>
               </v-col>
               <v-col cols="9">
@@ -144,9 +144,9 @@
               </v-col>
             </v-row>
             <v-row class="md-12" style="height: 65px;">
-              <v-col cols="2">
-                <v-card-text>
-                  <p class="text-left font-weight-black">주소상세</p>
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">주소상세</p>
                 </v-card-text>
               </v-col>
               <v-col cols="9">
@@ -162,9 +162,9 @@
               </v-col>
             </v-row>
             <v-row class="md-12" style="height: 65px;">
-              <v-col cols="2">
-                <v-card-text>
-                  <p class="text-left font-weight-black">구매제품</p>
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">구매제품</p>
                 </v-card-text>
               </v-col>
               <v-col cols="9">
@@ -182,9 +182,9 @@
               </v-col>
             </v-row>
             <v-row class="md-12" style="height: 65px;">
-              <v-col cols="2">
-                <v-card-text>
-                  <p class="text-left font-weight-black">구매처</p>
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">구매처</p>
                 </v-card-text>
               </v-col>
               <v-col cols="9">
@@ -202,9 +202,9 @@
               </v-col>
             </v-row>
             <v-row class="md-12" style="height: 65px;">
-              <v-col cols="2">
-                <v-card-text>
-                  <p class="text-left font-weight-black">구매날짜</p>
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">구매날짜</p>
                 </v-card-text>
               </v-col>
               <v-col cols="9">
@@ -254,9 +254,9 @@
               </v-col>
             </v-row>
             <v-row class="md-12" style="height: 65px;">
-              <v-col cols="2">
-                <v-card-text>
-                  <p class="text-left font-weight-black">정품번호</p>
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">정품번호</p>
                 </v-card-text>
               </v-col>
               <v-col cols="9">
@@ -272,9 +272,9 @@
               </v-col>
             </v-row>
             <v-row class="md-12">
-              <v-col cols="2">
-                <v-card-text>
-                  <p class="text-left font-weight-black">영수증/결제사진</p>
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+                  <p class="text-center font-weight-black" style="margin-top: 15px;">영수증/결제사진</p>
                 </v-card-text>
               </v-col>
               <v-col cols="9">
@@ -316,7 +316,7 @@
             <v-divider></v-divider>
             <br>
             <v-row class="md-12" style="height: 75px;">
-              <v-col cols="2"
+              <v-col cols="3"
                      class="text-center"
                      style="width: 150px !important; margin-top: 1%;">
                 <v-checkbox

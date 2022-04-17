@@ -37,9 +37,9 @@
             @submit.prevent="submit"
         >
           <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">이름</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">이름</p>
               </v-card-text>
             </v-col>
             <v-col cols="9">
@@ -55,9 +55,9 @@
             </v-col>
           </v-row>
           <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">핸드폰</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">핸드폰</p>
               </v-card-text>
             </v-col>
             <v-col cols="3">
@@ -95,9 +95,9 @@
             </v-col>
           </v-row>
           <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">이메일</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">이메일</p>
               </v-card-text>
             </v-col>
             <v-col cols="9">
@@ -112,9 +112,9 @@
             </v-col>
           </v-row>
           <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">우편번호</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">우편번호</p>
               </v-card-text>
             </v-col>
             <v-col cols="5">
@@ -128,7 +128,7 @@
                   required
               ></v-text-field>
             </v-col>
-            <v-col cols="4"
+            <v-col cols="3"
                    class="text-center">
               <v-btn
                   depressed
@@ -137,14 +137,14 @@
                   height="40px"
                   @click="showApi"
               >
-                우편번호 찾기
+                찾기
               </v-btn>
             </v-col>
           </v-row>
           <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">주소</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">주소</p>
               </v-card-text>
             </v-col>
             <v-col cols="9">
@@ -160,9 +160,9 @@
             </v-col>
           </v-row>
           <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">주소상세</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">주소상세</p>
               </v-card-text>
             </v-col>
             <v-col cols="9">
@@ -178,9 +178,9 @@
             </v-col>
           </v-row>
           <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">구매제품</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">구매제품</p>
               </v-card-text>
             </v-col>
             <v-col cols="9">
@@ -198,9 +198,9 @@
             </v-col>
           </v-row>
           <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">구매처</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">구매처</p>
               </v-card-text>
             </v-col>
             <v-col cols="9">
@@ -218,9 +218,9 @@
             </v-col>
           </v-row>
           <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">구매날짜</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">구매날짜</p>
               </v-card-text>
             </v-col>
             <v-col cols="9">
@@ -270,9 +270,9 @@
             </v-col>
           </v-row>
           <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">첨부파일1</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">첨부파일1</p>
               </v-card-text>
             </v-col>
             <v-col cols="9">
@@ -312,9 +312,9 @@
             </v-col>
           </v-row>
           <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">첨부파일2</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">첨부파일2</p>
               </v-card-text>
             </v-col>
             <v-col cols="9">
@@ -354,9 +354,9 @@
             </v-col>
           </v-row>
           <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">첨부파일3</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">첨부파일3</p>
               </v-card-text>
             </v-col>
             <v-col cols="9">
@@ -396,9 +396,9 @@
             </v-col>
           </v-row>
           <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">첨부파일4</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">첨부파일4</p>
               </v-card-text>
             </v-col>
             <v-col cols="9">
@@ -438,9 +438,9 @@
             </v-col>
           </v-row>
           <v-row class="md-12" style="height: 65px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">첨부파일5</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">첨부파일5</p>
               </v-card-text>
             </v-col>
             <v-col cols="9">
@@ -480,9 +480,9 @@
             </v-col>
           </v-row>
           <v-row class="md-12" style="height: 180px;">
-            <v-col cols="2">
-              <v-card-text>
-                <p class="text-left font-weight-black">문의사항</p>
+            <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+              <v-card-text style="padding: 0px;">
+                <p class="text-center font-weight-black" style="margin-top: 15px;">문의사항</p>
               </v-card-text>
             </v-col>
             <v-col cols="9">
@@ -497,7 +497,7 @@
           </v-row>
           <br>
           <v-row class="md-12" style="height: 120px;">
-            <v-col cols="2"
+            <v-col cols="3"
                    class="text-center"
                    style="width: 120px !important; margin-top: 1%;">
               <v-checkbox

@@ -6,7 +6,7 @@
         style="background-color: white;"
     >
       <!--  side menu star  -->
-<!--      <v-app-bar-nav-icon @click="drawer = !drawer" class="d-none d-flex d-sm-flex d-md-flex d-lg-none">
+      <v-app-bar-nav-icon @click="drawer = !drawer" class="d-none d-flex d-sm-flex d-md-flex d-lg-none">
         <v-menu
             bottom
             left
@@ -20,57 +20,40 @@
               <v-icon>mdi-dots-vertical</v-icon>
             </v-btn>
           </template>
-
-
-          <v-menu open-on-hover bottom offset-x>
-            <template v-slot:activator="{ on }">
-              <v-btn
-                  color="primary"
-                  dark
-                  v-on="on"
-              >
-                제품소개
-              </v-btn>
-            </template>
-
-            <v-list>
-              <v-list-tile
-                  v-for="(item, index) in product"
-                  :key="index"
-                  :to="item.to"
-              >
-                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-              </v-list-tile>
-            </v-list>
-          </v-menu>
-
-
           <v-list>
             <v-btn
                 text
-                href="/"
+                href="/as"
             >
-              <span class="mr-2">Home</span>
+              <span class="mr-2">A/S신청</span>
             </v-btn>
           </v-list>
           <v-list>
             <v-btn
                 text
-                href="/company"
+                href="/ascheck"
             >
-              <span class="mr-2">Company</span>
+              <span class="mr-2">A/S신청확인</span>
             </v-btn>
           </v-list>
           <v-list>
             <v-btn
                 text
-                href="/product"
+                href="/product-auth"
             >
-              <span class="mr-2">PRODUCT</span>
+              <span class="mr-2">정품등록</span>
+            </v-btn>
+          </v-list>
+          <v-list>
+            <v-btn
+                text
+                href="/authcheck"
+            >
+              <span class="mr-2">정품등록확인</span>
             </v-btn>
           </v-list>
         </v-menu>
-      </v-app-bar-nav-icon>-->
+      </v-app-bar-nav-icon>
       <!--  side menu end  -->
 
       <v-row align="center"
