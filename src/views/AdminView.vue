@@ -233,8 +233,7 @@ export default {
         return;
       }
 
-      //const url = "http://15.165.183.94/v1/product/manage";
-      const url = "http://localhost:1202/v1/product/manage";
+      const url = "http://15.165.183.94/v1/product/manage";
 
       const params = new URLSearchParams();
 
@@ -286,7 +285,7 @@ export default {
       }
 
       if (confirm("["+seq.name+"]님의 인증을 취소하시겠습니까?")){
-        const url = "http://localhost:1202/v1/product-regist/"+seq.product_regist_seq+"/cancel";
+        const url = "http://15.165.183.94/v1/product-regist/"+seq.product_regist_seq+"/cancel";
 
         const config = {
           method: 'post',
