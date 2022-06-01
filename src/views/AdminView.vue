@@ -84,14 +84,20 @@
             </v-col>
             <v-col cols="1">
               <v-card-text>
-                <p class="text-right font-weight-black">정품인증</p>
+                <p class="text-right font-weight-black">인증상태</p>
               </v-card-text>
             </v-col>
-            <v-col cols="1" style="margin-top: -5px;">
-              <v-checkbox
-                  v-model="conditionForm.only_auth_product"
-                  label="정품인증"
-              ></v-checkbox>
+            <v-col cols="2">
+              <v-combobox
+                  solo
+                  dense
+                  label="인증상태"
+                  v-model="conditionForm.status"
+                  :items="authStatus"
+                  item-text="name"
+                  item-value="value"
+              >
+              </v-combobox>
             </v-col>
             <v-col cols="1">
               <v-card-text>
@@ -121,7 +127,7 @@
                   dense
               ></v-text-field>
             </v-col>
-            <v-col cols="2">
+            <v-col cols="1">
               <v-btn
                   depressed
                   color="primary"
@@ -148,8 +154,13 @@
                 <td>{{row.item.purchase_date}}</td>
                 <td>{{row.item.product_regist_regdate}}</td>
                 <td>
-                  <v-btn class="primary"  @click="onButtonClick(row.item)">
+                  <v-btn class="primary"  @click="onDownloadButtonClick(row.item)">
                     다운로드
+                  </v-btn>
+                </td>
+                <td>
+                  <v-btn class="error"  @click="onCancelButtonClick(row.item)">
+                    인증취소
                   </v-btn>
                 </td>
               </tr>
@@ -186,14 +197,15 @@ export default {
       { text: '주소상세', value: 'addr_detail' },
       { text: '구매일자', value: 'purchase_date' },
       { text: '정품등록일자', value: 'product_regist_regdate' },
-      { text: '다운로드', value: 'product_regist_seq' }
+      { text: '다운로드', value: 'product_regist_seq' },
+      { text: '인증취소', value: 'cancel_product_auth' }
     ],
     desserts: [],
     conditionForm: {
       name: '',
       phone: '',
       serial_no: '',
-      only_auth_product: false,
+      status:{ name: "인증완료", value:2 },
     },
     conditionRules: {
       serial_no: [val => (val || '').length > 0 || '시리얼번호를 입력하세요.'],
@@ -202,6 +214,11 @@ export default {
       ],
     },
     file: '',
+    authStatus: [
+      { name: "미인증", value:0 },
+      { name: "인증취소", value:1 },
+      { name: "인증완료", value:2 },
+    ],
   }),
   methods: {
     checkNumber(){
@@ -216,14 +233,15 @@ export default {
         return;
       }
 
-      const url = "http://15.165.183.94/v1/product/manage";
+      //const url = "http://15.165.183.94/v1/product/manage";
+      const url = "http://localhost:1202/v1/product/manage";
 
       const params = new URLSearchParams();
 
       params.append("name", this.conditionForm.name);
       params.append("phone", this.conditionForm.phone);
       params.append("serial_no", this.conditionForm.serial_no);
-      params.append("only_auth_product", this.conditionForm.only_auth_product);
+      params.append("status", this.conditionForm.status.value);
 
       this.$axios.get(url,
           {params:params,
@@ -237,7 +255,7 @@ export default {
         this.desserts = res.data.data;
       })
     },
-    onButtonClick(seq) {
+    onDownloadButtonClick(seq) {
 
       if (seq.product_regist_seq == '' || seq.product_regist_seq == null || seq.product_regist_seq == undefined) {
         alert("정품인증 상품이 아닙니다.");
@@ -260,6 +278,31 @@ export default {
       document.body.appendChild(link);
       link.click();
       link.remove();
+    },
+    onCancelButtonClick(seq) {
+      if (seq.product_regist_seq == '' || seq.product_regist_seq == null || seq.product_regist_seq == undefined || seq.status != 2) {
+        alert("정품인증 상품이 아닙니다.");
+        return;
+      }
+
+      if (confirm("["+seq.name+"]님의 인증을 취소하시겠습니까?")){
+        const url = "http://localhost:1202/v1/product-regist/"+seq.product_regist_seq+"/cancel";
+
+        const config = {
+          method: 'post',
+          url: url
+        }
+
+        this.$axios.request(config)
+            .then(res => {
+              if (res.data.success == true) {
+                alert("인증취소를 성공하였습니다.");
+                this.desserts.splice(this.desserts.findIndex(e => e.product_regist_seq == seq.product_regist_seq), 1)
+              }
+            }).catch(err => {
+          console.log(err.response);
+        });
+      }
     },
     selectFile(file) {
       console.log(file)
