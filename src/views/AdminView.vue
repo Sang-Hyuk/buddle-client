@@ -142,7 +142,127 @@
         </v-container>
         <br>
         <v-col col="12">
-          <v-data-table :headers="headers" :items="desserts">
+          <v-data-table :headers="headers" :items="results">
+            <template v-slot:top>
+              <v-dialog
+                v-model="dialog"
+                max-width="1000px"
+                >
+                <v-card>
+                  <v-card-title>
+                    <span class="text-h5">인증정보수정</span>
+                  </v-card-title>
+
+                  <v-card-text>
+                    <v-container>
+                      <v-row>
+                        <v-col
+                            cols="12"
+                            sm="6"
+                            md="4"
+                        >
+                          <v-text-field
+                              v-model="editedItem.serial_no"
+                              label="시리얼 번호"
+                              disabled
+                          ></v-text-field>
+                        </v-col>
+                        <v-col
+                            cols="12"
+                            sm="6"
+                            md="4"
+                        >
+                          <v-text-field
+                              v-model="editedItem.product_regdate"
+                              label="제품등록일자"
+                              disabled
+                          ></v-text-field>
+                        </v-col>
+                        <v-col
+                            cols="12"
+                            sm="6"
+                            md="4"
+                        >
+                          <v-text-field
+                              v-model="editedItem.name"
+                              label="고객명"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col
+                            cols="12"
+                            sm="6"
+                            md="4"
+                        >
+                          <v-text-field
+                              v-model="editedItem.phone"
+                              label="핸드폰번호"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col
+                            cols="12"
+                            sm="6"
+                            md="4"
+                        >
+                          <v-text-field
+                              v-model="editedItem.addr"
+                              label="주소"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col
+                            cols="12"
+                            sm="6"
+                            md="4"
+                        >
+                          <v-text-field
+                              v-model="editedItem.addr_detail"
+                              label="주소상세"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col
+                            cols="12"
+                            sm="6"
+                            md="4"
+                        >
+                          <v-text-field
+                              v-model="editedItem.purchase_date"
+                              label="구매일자"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col
+                            cols="12"
+                            sm="6"
+                            md="4"
+                        >
+                          <v-text-field
+                              v-model="editedItem.product_regist_regdate"
+                              label="정품등록일자"
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card-text>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                        color="blue darken-1"
+                        text
+                        @click="onSaveButtonClick"
+                    >
+                      저장
+                    </v-btn>
+                    <v-btn
+                        color="blue darken-1"
+                        text
+                        @click="onCloseButtonClick"
+                    >
+                      취소
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+
+            </template>
             <template v-slot:item="row">
               <tr>
                 <td>{{row.item.serial_no}}</td>
@@ -153,15 +273,29 @@
                 <td>{{row.item.addr_detail}}</td>
                 <td>{{row.item.purchase_date}}</td>
                 <td>{{row.item.product_regist_regdate}}</td>
-                <td>
-                  <v-btn class="primary"  @click="onDownloadButtonClick(row.item)">
-                    다운로드
-                  </v-btn>
+                <td class="text-center">
+                  <v-icon
+                      small
+                      class="mr-2"
+                      @click="onDownloadButtonClick(row.item)"
+                  >
+                    mdi-folder-arrow-down
+                  </v-icon>
                 </td>
-                <td>
-                  <v-btn class="error"  @click="onCancelButtonClick(row.item)">
-                    인증취소
-                  </v-btn>
+                <td class="text-center">
+                  <v-icon
+                      small
+                      class="mr-2"
+                      @click="onEditButtonClick(row.item)"
+                  >
+                    mdi-pencil
+                  </v-icon>
+                  <v-icon
+                      small
+                      @click="onCancelButtonClick(row.item)"
+                  >
+                    mdi-delete
+                  </v-icon>
                 </td>
               </tr>
             </template>
@@ -197,10 +331,30 @@ export default {
       { text: '주소상세', value: 'addr_detail' },
       { text: '구매일자', value: 'purchase_date' },
       { text: '정품등록일자', value: 'product_regist_regdate' },
-      { text: '다운로드', value: 'product_regist_seq' },
-      { text: '인증취소', value: 'cancel_product_auth' }
+      { text: '다운로드', value: 'product_regist_seq', align:"center" },
+      { text: '수정/취소', value: 'cancel_product_auth', align:"center" }
     ],
-    desserts: [],
+    dialog:false,
+    results: [],
+    editedIndex: -1,
+    editedItem: {
+      product_regdate: "",
+      name: "",
+      phone: "",
+      addr: "",
+      addr_detail: "",
+      purchase_date:"",
+      product_regist_regdate:"",
+    },
+    defaultItem: {
+      product_regdate: "",
+      name: "",
+      phone: "",
+      addr: "",
+      addr_detail: "",
+      purchase_date:"",
+      product_regist_regdate:"",
+    },
     conditionForm: {
       name: '',
       phone: '',
@@ -251,12 +405,12 @@ export default {
       )
       .then((res)=> {
         console.log(res.data.data)
-        this.desserts = res.data.data;
+        this.results = res.data.data;
       })
     },
     onDownloadButtonClick(seq) {
 
-      if (seq.product_regist_seq == '' || seq.product_regist_seq == null || seq.product_regist_seq == undefined) {
+      if (seq.product_regist_seq === '' || seq.product_regist_seq == null) {
         alert("정품인증 상품이 아닙니다.");
         return;
       }
@@ -296,7 +450,7 @@ export default {
             .then(res => {
               if (res.data.success == true) {
                 alert("인증취소를 성공하였습니다.");
-                this.desserts.splice(this.desserts.findIndex(e => e.product_regist_seq == seq.product_regist_seq), 1)
+                this.results.splice(this.results.findIndex(e => e.product_regist_seq == seq.product_regist_seq), 1)
               }
             }).catch(err => {
           console.log(err.response);
@@ -336,6 +490,57 @@ export default {
         window.$('.loading').hide();
         console.log(err.response);
       });
+    },
+    onEditButtonClick(item) {
+      this.editedIndex = this.results.indexOf(item)
+      this.editedItem = Object.assign({}, item)
+      this.dialog = true
+    },
+    onCloseButtonClick () {
+      this.dialog = false
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      })
+    },
+    onSaveButtonClick () {
+      if (this.editedIndex < 0 || this.editedItem.serial_no === "" || this.editedItem.serial_no == null || this.editedItem.product_regist_seq === '' || this.editedItem.product_regist_seq == null) {
+        alert("정보를 수정 할 수 없습니다.");
+        return;
+      }
+
+      let token = sessionStorage.getItem("access_token");
+      const url = "http://15.165.183.94/v1/product-regist/"+this.editedItem.product_regist_seq;
+
+      const formData = new FormData();
+      formData.append("name", this.editedItem.name);
+      formData.append('phone', this.editedItem.phone);
+      formData.append('addr', this.editedItem.addr);
+      formData.append('addr_detail', this.editedItem.addr_detail);
+      formData.append('purchase_date', this.editedItem.purchase_date+'T00:00:00Z');
+      formData.append('regdate', this.editedItem.product_regist_regdate+'T00:00:00Z');
+
+      const config = {
+        method: 'put',
+        url: url,
+        data: formData,
+        headers: {
+          "Content-Type": 'application/json',
+          "access-token" : "Bearer "+ token,
+        }
+      }
+
+      this.$axios.request(config)
+          .then(res => {
+            console.log(res.data);
+            alert(res.data.message);
+          }).catch(err => {
+        console.log(err.response);
+      });
+
+      Object.assign(this.results[this.editedIndex], this.editedItem)
+
+      this.onCloseButtonClick()
     }
   },
 }
