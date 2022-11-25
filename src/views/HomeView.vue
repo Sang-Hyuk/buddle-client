@@ -5,7 +5,6 @@
         <v-col style="padding: 0px;">
           <v-card>
             <v-carousel
-                cycle
                 hide-delimiters
                 height="750"
                 width="100%"

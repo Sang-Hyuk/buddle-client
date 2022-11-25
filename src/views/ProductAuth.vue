@@ -5,7 +5,6 @@
         <v-col style="padding: 0px;">
           <v-card>
             <v-carousel
-                cycle
                 hide-delimiters
                 height="460"
                 width="100%"
@@ -281,6 +280,7 @@
                 <template>
                   <v-file-input
                       color="deep-purple accent-4"
+                      :rules="itemrules.file_rule"
                       counter
                       label="파일선택"
                       multiple
@@ -313,6 +313,18 @@
                 </template>
               </v-col>
             </v-row>
+            <v-row class="md-12">
+              <v-col cols="3" style="margin-top: 5px; padding: 0px;">
+                <v-card-text style="padding: 0px;">
+
+                </v-card-text>
+              </v-col>
+              <v-col cols="9">
+                <v-card-text style="padding: 0px;">
+                  <p class="font-weight-black">제품을 선물 받으셨거나 다른 경로로 구입하신 고객님께서는 보증서(VIP CARD)에 구입한 날짜를 수기로 작성하여 업로드해 주세요</p>
+                </v-card-text>
+              </v-col>
+            </v-row>
             <v-divider></v-divider>
             <br>
             <v-row class="md-12" style="height: 75px;">
@@ -322,7 +334,7 @@
                 <v-checkbox
                     v-model="itemForm.privacy"
                     :rules="itemrules.privacy_rule"
-                    label="개인정보 수집 동의"
+                    label="개인정보수집 동의"
                     dense
                     required
                 ></v-checkbox>
@@ -489,7 +501,8 @@ export default {
       ],
     },
     items: [
-      { name: "버들맘마 분유제조기", value: 0}
+      { name: "버들맘마 분유제조기 플러스", value: 0},
+      { name: "버들맘마 분유제조기 스마트", value: 1}
     ],
     buypath: [
       { name: "네이버", value:0 },
