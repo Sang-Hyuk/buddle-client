@@ -502,7 +502,8 @@ export default {
     },
     items: [
       { name: "버들맘마 분유제조기 플러스", value: 0},
-      { name: "버들맘마 분유제조기 스마트", value: 1}
+      { name: "버들맘마 분유제조기 스마트", value: 1},
+      { name: "버들아이 젖병세척기", value: 2}
     ],
     buypath: [
       { name: "네이버", value:0 },
