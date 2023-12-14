@@ -78,6 +78,7 @@
               src="@/assets/logo.png"
               transition="scale-transition"
               width="200"
+              @click="goToHome()"
               dark
           />
         </v-btn>
@@ -383,8 +384,14 @@
                 </span>
               </v-col>
             </v-row>
-            <p class="text-no-wrap" style="margin-bottom: 1px; color:red; font-size: 13px;">모든 컨텐츠의 무단복제 및 재판매를 금지합니다.</p>
-            <p class="text-no-wrap" style="margin-bottom: 0px; font-size: 13px;">Copyright(c) 2022 by <strong>buddle</strong> All Rights Reserved. Designed by buddle.kr</p>
+            <v-row class="mb-12" justify="left">
+              <v-col>
+                <p class="text-center" style="margin-bottom: 1px; color:red; font-size: 13px;">모든 컨텐츠의 무단복제 및 재판매를 금지합니다.</p>
+                <span style="font-family: 'Nanum Gothic'; font-size: 12px;">
+                  <p class="text-center" style="margin-bottom: 0px;">Copyright(c) 2022 by <strong>buddle</strong> All Rights Reserved. Designed by buddle.kr </p>
+                </span>
+              </v-col>
+            </v-row>
           </v-container>
         </v-footer>
       </v-container>
