@@ -24,24 +24,24 @@
     <v-container class="mt-10">
       <v-row class="mb-12" justify="center">
         <v-col lg="3" class="text-center">
-          <v-card style="margin-bottom: 10px;"><v-img src='../assets/banner01.png'></v-img></v-card>
+          <v-card style="margin-bottom: 10px;"><v-img src='../assets/banner01.jpeg'></v-img></v-card>
           <p class="text-center" style="color: brown; font-size: 20px; font-weight: bold;">분유제조기</p>
           <p style="font-size: 15px; margin-top: 10px;">엄마와 아빠의 마음을 생각하며 육아하는 <br> 엄마 아빠가 함께 만든 분유제조기.</p>
         </v-col>
         <v-col lg="3" class="text-center">
-          <v-card style="margin-bottom: 10px;"><v-img src='../assets/banner02.png'></v-img></v-card>
+          <v-card style="margin-bottom: 10px;"><v-img src='../assets/banner02.jpeg'></v-img></v-card>
           <p class="text-center" style="color: brown; font-size: 20px; font-weight: bold;">실리콘 흡착 식기</p>
           <p style="font-size: 15px; margin-top: 10px;">감성적인 디자인과 최고급 소재로 아이를 <br> 생각하며 만든 실리콘 흡착 식기.</p>
         </v-col>
         <v-col lg="3" class="text-center">
-          <v-card style="margin-bottom: 10px;"><v-img src='../assets/banner03.png'></v-img></v-card>
-          <p class="text-center" style="color: brown; font-size: 20px; font-weight: bold;">버들 친환경 가구</p>
-          <p style="font-size: 15px; margin-top: 10px;">아이를 생각한 친환 소재와 국내 제조로 <br> 깐깐하게 만들었습니다.</p>
+          <v-card style="margin-bottom: 10px;"><v-img src='../assets/banner03.jpeg'></v-img></v-card>
+          <p class="text-center" style="color: brown; font-size: 20px; font-weight: bold;">버들 4 in One 스마트 초퍼</p>
+          <p style="font-size: 15px; margin-top: 10px;">이유식, 간식 준비 이제 걱정하지마세요.<br> 다지기, 슬라이서, 거품기를 한번에 올인원 버들 차퍼</p>
         </v-col>
         <v-col lg="3" class="text-center">
-          <v-card style="margin-bottom: 10px;"><v-img src='../assets/banner04.png'></v-img></v-card>
-          <p class="text-center" style="color: brown; font-size: 20px; font-weight: bold;">Q&A</p>
-          <p style="font-size: 15px; margin-top: 10px;">어떠한 궁금증도 상식에 맞는 답변을 드리는데 <br> 최선을 다하겠습니다.</p>
+          <v-card style="margin-bottom: 10px;"><v-img src='../assets/banner04.jpeg'></v-img></v-card>
+          <p class="text-center" style="color: brown; font-size: 20px; font-weight: bold;">LED 온도표시 이유식스푼</p>
+          <p style="font-size: 15px; margin-top: 10px;">온도 확인을 위해 직접 먹어보고 확인하는 방법은 교차 감염의 원인이 됩니다.<br> 터치 한번으로 쉽게 온도를 확인 할 수있는 버들 온도 감지 스푼</p>
         </v-col>
       </v-row>
     </v-container>
