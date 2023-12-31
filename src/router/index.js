@@ -10,6 +10,7 @@ import AdminView from '../views/AdminView'
 import AuthCheckView from '../views/AuthCheckView'
 import AsCheckView from "@/views/AsCheckView";
 import ProductAuthView from '../views/ProductAuth'
+import AdminASView from '../views/AdminASView'
 
 Vue.use(VueRouter)
 
@@ -63,6 +64,11 @@ const routes = [
     path: '/product-auth',
     name: 'product-auth',
     component: ProductAuthView
+  },
+  {
+    path: '/adminAS',
+    name: 'adminAS',
+    component: AdminASView
   },
 ]
 

@@ -249,6 +249,17 @@
               <span class="mr-2">관리자페이지</span>
             </v-btn>
           </v-list>
+          <!--관리자 AS내역 확인 화면-->
+          <v-list>
+            <v-btn
+                text
+                link
+                @click="moveToAdminASPage"
+                style="font-family: 'Noto Sans Adlam'; font-size: 14px;"
+            >
+              <span class="mr-2">관리자A/S내역</span>
+            </v-btn>
+          </v-list>
           <v-list>
             <v-btn
                 text
@@ -547,7 +558,14 @@ export default {
       }
       this.$router.push({ path: '/admin' });
     },
-    /* admin page ent */
+    moveToAdminASPage() {
+      if (sessionStorage.getItem("access_token") == "" || sessionStorage.getItem("access_token") == null) {
+        alert("권한이 없습니다.");
+        return;
+      }
+      this.$router.push({ path: '/adminAS' });
+    },
+    /* admin page end */
   },
 
 };

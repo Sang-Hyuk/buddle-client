@@ -81,6 +81,24 @@
           </v-row>
         </v-container>
         <br>
+
+        <!--AS내역 화면 리스트 변경-->
+        <v-col col="12">
+          <v-data-table :headers="headers" :items="results">
+            <template v-slot:item="row">
+              <tr>
+                <td>{{row.item.name}}</td>
+                <td>{{row.item.phone}}</td>
+                <td>{{row.item.email}}</td>
+                <td>{{row.item.product_type}}</td>
+                <td>{{row.item.market_type}}</td>
+                <td>{{row.item.purchase_date}}</td>
+                <td>{{row.item.contents}}</td>
+              </tr>
+            </template>
+          </v-data-table>
+        </v-col>
+        <!--
         <v-col col="12">
           <v-container fluid>
             <v-row class="md-12">
@@ -204,6 +222,7 @@
             </v-row>
           </v-container>
         </v-col>
+        -->
       </v-row>
     </v-container>
   </v-container>
@@ -217,17 +236,22 @@ import mainImg3 from "@/assets/main_metapo03.png";
 
 export default {
   data: () => ({
+    headers: [
+      { text: '이름', value: 'name', },
+      { text: '핸드폰번호', value: 'phone' },
+      { text: '이메일', value: 'email' },
+      { text: '구매제품', value: 'product_type' },
+      { text: '구매처', value: 'market_type' },
+      { text: '구매일자', value: 'purchase_date' },
+      { text: '문의사항', value: 'contents' },
+    ],
+    dialog:false,
+    results: [],
+    editedIndex: -1,
     conditionForm: {
       name: '',
       phone: ''
     },
-    resName: '',
-    resPhone: '',
-    resEmail: '',
-    resProductType: '',
-    resMarketType:'',
-    resPurchaseDate: '',
-    resContents: '',
     conditionRules: {
       name_rule: [val => (val || '').length > 0 || '이름을 입력하세요.'],
       phone_rule: [
@@ -271,6 +295,16 @@ export default {
       this.$axios.get(url,
           {params:params}
       )
+      .then((res)=> {
+        console.log(res.data.data)
+        this.results = res.data.data;
+      })
+
+
+
+      /*this.$axios.get(url,
+          {params:params}
+      )
           .then((res)=> {
             if (res.data.success == true) {
               let rows = '';
@@ -294,7 +328,7 @@ export default {
             }
           }).catch(err => {
         console.log(err.response);
-      });
+      });*/
     },
     getPhoneMask(val) {
       let res = this.getMask(val)
