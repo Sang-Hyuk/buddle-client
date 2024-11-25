@@ -20,7 +20,7 @@
               <v-icon>mdi-dots-vertical</v-icon>
             </v-btn>
           </template>
-          <v-list>
+          <!-- <v-list>
             <v-btn
                 text
                 href="/as"
@@ -35,7 +35,7 @@
             >
               <span class="mr-2">A/S신청확인</span>
             </v-btn>
-          </v-list>
+          </v-list> -->
           <v-list>
             <v-btn
                 text
@@ -137,7 +137,7 @@
 <!--            </v-list-item>-->
 <!--          </v-list>-->
 <!--        </v-menu>-->
-        <v-menu open-on-hover top offset-y>
+        <!-- <v-menu open-on-hover top offset-y>
           <template v-slot:activator="{ attrs, on }">
             <v-btn
                 text
@@ -163,7 +163,7 @@
               </v-btn>
             </v-list-item>
           </v-list>
-        </v-menu>
+        </v-menu> -->
         <v-menu open-on-hover top offset-y>
           <template v-slot:activator="{ attrs, on }">
             <v-btn
